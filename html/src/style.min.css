@@ -2947,17 +2947,6 @@ ul.tickets li.ticket .number {
 	margin-left: 78px
 }
 
-
-.countpanel {
-	font-size: 30px;
-    position: absolute;
-    top: 110px;
-    width: 100%;
-    left: 0;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.9)
-}
-
 .circleStatsItem.orange, .circleStatsItem.orange i {
 	color: #fa603d
 }
@@ -3030,13 +3019,23 @@ ul.tickets li.ticket .number {
 }
 
 .circleStatsItemBox .percent {
-	font-size: 12px;
+	font-size: 10px;
 	position: absolute;
-	top: 110px;
+	top: 80px;
 	width: 100%;
 	left: 0;
 	text-align: center;
 	color: rgba(255, 255, 255, 0.9)
+}
+
+.circleStatsItemBox .countpanel {
+	font-size: 40px;
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9)
 }
 
 .circleStatsItemBox input {
