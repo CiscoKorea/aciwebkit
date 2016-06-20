@@ -115,7 +115,7 @@ $(document).ready(function(){
 			var recdata = $(this).find("input").val();
 			percent = (recdata*100)/value
 			countSpeed = 2300*percent;
-			endValue = value*percent;
+			endValue = recdata;
 //			console.log("value : " + value)
 //			console.log("unit : " + unit)
 //			console.log("percent : " + percent)
