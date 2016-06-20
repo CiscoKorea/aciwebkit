@@ -250,23 +250,9 @@ $(document).ready(function(){
 			
 			var value = $(this).find(".value > .number").html();
 			var unit = $(this).find(".value > .unit").html();
-			var recdata = $(this).find("input").val();
-			percent = (recdata*100)/value
+			var percent = $(this).find("input").val()/100;
 			countSpeed = 2300*percent;
-			endValue = recdata;
-//			console.log("value : " + value)
-//			console.log("unit : " + unit)
-//			console.log("percent : " + percent)
-//			console.log("cunit : " + count_unit)
-//			console.log("cnum : " + count_number)
-//			console.log("cspeed : " + countSpeed)
-//			console.log("endV : " + endValue)
-			
-//			var value = $(this).find(".value > .number").html();
-//			var unit = $(this).find(".value > .unit").html();
-//			var percent = $(this).find("input").val()/100;
-//			countSpeed = 2300*percent;
-//			endValue = value*percent;
+			endValue = value*percent;
 			
 			$(this).find(".count > .unit").html(unit);
 			$(this).find(".count > .number").countTo({
