@@ -510,9 +510,9 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Tenants</div>
-                <span class="percent">percent</span>
+                <span class="plus">percent</span>
                 <div class="circleStat">
-                    <input type="text" value="@fvTenant_pct" class="whiteCircle" />
+                    <input type="text" value="@fvTenant_cnt" class="whiteCircle" />
                 </div>      
                 <div class="footer">
                     <span class="count">
