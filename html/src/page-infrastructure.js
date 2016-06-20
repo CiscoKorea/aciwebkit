@@ -110,27 +110,25 @@ $(document).ready(function(){
 		
 		$(".circleStatsItemBox").each(function(){
 			
-//			var value = $(this).find(".value > .number").html();
-//			var unit = $(this).find(".value > .unit").html();
-//			var c = $(this).find("input").val();
-//			var count_unit = $(this).find(".count > .unit").html();
-//			var count_number = $(this).find(".count > .number").html()
-//			countSpeed = 2300*(c/100);
-//			endValue = (c*100)/value;
-			
 			var value = $(this).find(".value > .number").html();
 			var unit = $(this).find(".value > .unit").html();
-			var percent = $(this).find("input").val()/100;
-			countSpeed = 2300*percent;
+			var recdata = $(this).find("input").val();
+			percent = (recdata*100)/value
+			countSpeed = 2300*percent);
 			endValue = value*percent;
+//			console.log("value : " + value)
+//			console.log("unit : " + unit)
+//			console.log("percent : " + percent)
+//			console.log("cunit : " + count_unit)
+//			console.log("cnum : " + count_number)
+//			console.log("cspeed : " + countSpeed)
+//			console.log("endV : " + endValue)
 			
-			console.log("value : " + value)
-			console.log("unit : " + unit)
-			console.log("percent : " + percent)
-			console.log("cunit : " + count_unit)
-			console.log("cnum : " + count_number)
-			console.log("cspeed : " + countSpeed)
-			console.log("endV : " + endValue)
+//			var value = $(this).find(".value > .number").html();
+//			var unit = $(this).find(".value > .unit").html();
+//			var percent = $(this).find("input").val()/100;
+//			countSpeed = 2300*percent;
+//			endValue = value*percent;
 			
 			$(this).find(".count > .unit").html(unit);
 			$(this).find(".count > .number").countTo({
