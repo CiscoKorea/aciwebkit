@@ -2947,11 +2947,14 @@ ul.tickets li.ticket .number {
 	margin-left: 78px
 }
 
-.circleStatsItem .countpanel {
+.countpanel {
 	font-size: 30px;
-	position: absolute;
-	top : 70%;
-	margin-left: 78px
+    position: absolute;
+    top: 110px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.9)
 }
 
 .circleStatsItem.orange, .circleStatsItem.orange i {
