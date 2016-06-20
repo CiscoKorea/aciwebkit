@@ -115,6 +115,8 @@ $(document).ready(function(){
 			var input_arr = $(this).find("input").val().split(':')
 			var percent = input_arr[0]/100;
 			var c = input_arr[1]
+			console.log('PERCENT : ' + percent)
+			console.log('C : ' + c)
 
 			countSpeed = 2300*percent;
 			endValue = value*percent;
