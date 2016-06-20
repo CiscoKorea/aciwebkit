@@ -2948,14 +2948,14 @@ ul.tickets li.ticket .number {
 }
 
 
-.circleStatsItem .countpanel {
+/* .circleStatsItem .countpanel {
 	font-size: 30px;
     position: absolute;
     top: 110px;
     width: 100%;
     left: 0;
     text-align: center
-}
+} */
 
 .circleStatsItem.orange, .circleStatsItem.orange i {
 	color: #fa603d

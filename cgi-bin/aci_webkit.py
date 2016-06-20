@@ -512,7 +512,6 @@ def show_dashboard(rest):
             <div class="circleStatsItemBox">
                 <div class="header">Tenants</div>
                 <span class="percent">percent</span>
-                <span class="countpanel">@fvTenant_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@fvTenant_pct" class="whiteCircle" />
                 </div>
@@ -2039,7 +2038,7 @@ def stat_intf(session, nid, md):
             for id, node in sorted(nodes_new.items()):
                 ids.append(id)
                 node_url = 'http://' + re.sub(r'&nid.*$', "", URL) + '&nid=' + id
-                data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"nid_' + id + '\" onclick=\"location.href='\' + node_url + '\' \">' + id + '</button>'
+                data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"nid_' + id + '\" onclick=\"location.href=\"' + node_url + '\' \">' + id + '</button>'
             print '<h2>Please select a node:</h2>'
             spinner(ids, 'show')
             print '''<div class="btn-group" role="group" aria-label="...">'''
