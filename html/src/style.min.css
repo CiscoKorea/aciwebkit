@@ -2922,7 +2922,6 @@ ul.tickets li.ticket .number {
 	top: 15px;
 	left: 120px;
 	padding: 5px 0 !important;
-	color: #67c2ef;
 	border-color: rgba(0, 0, 0, 0.8)
 }
 
@@ -3050,6 +3049,7 @@ ul.tickets li.ticket .number {
 	position: absolute;
 	top: 30px;
 	padding: 5px 0 !important;
+	color: #67c2ef;
 	border-color: rgba(0, 0, 0, 0.8)
 }
 
