@@ -110,27 +110,17 @@ $(document).ready(function(){
 		
 		$(".circleStatsItemBox").each(function(){
 			
-//			var input_arr = $(this).find("input").val().split(':');
-//			var percent = input_arr[0]/100;
-//			var c = input_arr[1];
-//			console.log('VALUE : ' + value)
-//			console.log('UNIT : ' + unit)
-//			console.log('PERCENT : ' + percent);
-//			console.log('C : ' + c);
-//			countSpeed = 2300*percent;
-//			endValue = value*percent;
-//			$(this).find(".count > .unit").html(c);
-			
-			var value = $(this).find(".value > .number").html();
-			var unit = $(this).find(".value > .unit").html();
-			var c = $(this).find("input").val();
-			
-			countSpeed = 2300*(c/100);
-			endValue = (c/value)*100;
-
 //			var value = $(this).find(".value > .number").html();
 //			var unit = $(this).find(".value > .unit").html();
-//			var percent = $(this).find("input").val()/100;
+//			var c = $(this).find("input").val();
+//			countSpeed = 2300*(c/100);
+//			endValue = (c*100)/value;
+
+			var value = $(this).find(".value > .number").html();
+			var unit = $(this).find(".value > .unit").html();
+			var percent = $(this).find("input").val()/100;
+			countSpeed = 2300*percent;
+			endValue = value*percent;
 			
 			$(this).find(".count > .unit").html(unit);
 			$(this).find(".count > .number").countTo({
