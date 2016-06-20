@@ -112,13 +112,15 @@ $(document).ready(function(){
 
 			var value = $(this).find(".value > .number").html();
 			var unit = $(this).find(".value > .unit").html();
-			var input_arr = $(this).find("input").val().split(':');
-			var percent = input_arr[0]/100;
-			var c = input_arr[1];
+			var percent = $(this).find("input").val()/100;
+			
+//			var input_arr = $(this).find("input").val().split(':');
+//			var percent = input_arr[0]/100;
+//			var c = input_arr[1];
 			console.log('VALUE : ' + value)
 			console.log('UNIT : ' + unit)
 			console.log('PERCENT : ' + percent);
-			console.log('C : ' + c);
+//			console.log('C : ' + c);
 
 			countSpeed = 2300*percent;
 			endValue = value*percent;
