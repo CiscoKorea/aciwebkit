@@ -511,15 +511,15 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Tenants</div>
-                <table>
-                <tr>
-                <td>
-                <td class="countpanel">@fvTenant_cnt</td>
-                <td class="circleStat">
-                    <input type="text" value="@fvTenant_pct" class="whiteCircle" />
-                </td>
-                </tr>
-                </table>
+                <table><tr>
+                    <td class="countpanel">@fvTenant_cnt</td>
+                    <td>
+                        <span class="percent">percent</span>
+                        <div class="circleStat">
+                            <input type="text" value="@fvTenant_pct" class="whiteCircle" />
+                        </div>
+                    </td>
+                </tr></table>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@fvTenant_cnt</span>
