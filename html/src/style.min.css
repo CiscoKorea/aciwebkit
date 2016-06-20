@@ -3021,7 +3021,7 @@ ul.tickets li.ticket .number {
 .circleStatsItemBox .percent {
 	font-size: 10px;
 	position: absolute;
-	top: 80px;
+	top: 85px;
 	width: 100%;
 	left: 0;
 	text-align: center;
@@ -3030,8 +3030,9 @@ ul.tickets li.ticket .number {
 
 .circleStatsItemBox .countpanel {
 	font-size: 40px;
+	font-weight: bold;
     position: absolute;
-    top: 100px;
+    top: 95px;
     width: 100%;
     left: 0;
     text-align: center;
