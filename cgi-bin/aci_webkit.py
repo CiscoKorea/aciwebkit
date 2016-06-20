@@ -212,35 +212,6 @@ def print_navbar(aip, usr, pwd):
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-cog"></span> Create <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li class="disabled"><a href=" ">App Profile</a></li>
-                <li class="disabled"><a href=" ">Bridge Domain</a></li>
-                <li class="disabled"><a href=" ">Context</a></li>
-                <li class="disabled"><a href=" ">Endpoing Group</a></li>
-                <li><a href="@base_url&pname=create_tn">Tenant</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-trash"></span> Delete <span class="caret"></span></a>
-               <ul class="dropdown-menu">
-                <li class="disabled"><a href=" ">App Profile</a></li>
-                <li class="disabled"><a href=" ">Bridge Domain</a></li>
-                <li class="disabled"><a href=" ">Context</a></li>
-                <li class="disabled"><a href=" ">Endpoing Group</a></li>
-                <li><a id="nid_delete_tn" href="@base_url&pname=delete_tn">Tenant</a></li>
-               </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-leaf"></span> DevOps <span class="caret"></span></a>
-               <ul class="dropdown-menu">
-                <li><a href="https://github.com/datacenter/acitoolkit" target="_blank">acitoolkit</a></li>
-                <li><a href="https://github.com/datacenter/arya" target="_blank">arya</a></li>
-                <li><a href="https://@aip/cobra" target="_blank">Cobra SDK</a></li>
-                <li><a href="https://@aip/visore.html" target="_blank">Object Store Browser</a></li>
-               </ul>
-            </li>
-            <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-sunglasses"></span> Show <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a id="nid_show_apic" href="@base_url&pname=show_apic">APIC</a></li>
@@ -271,7 +242,6 @@ def print_navbar(aip, usr, pwd):
               <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-wrench"></span> Tools <span class="caret"></span></a>
                <ul class="dropdown-menu">
                 <li><a id="nid_find_dup_ip" href="@base_url&pname=find_dup_ip">Find EP with Dup IP</a></li>
-                <li><a id="nid_flip_port" href="@base_url&pname=flip_port">Port Flipper</a></li>
                 <li><a href="http://ecats-wiki/Templatized_APIC_Configurator" target="_blank">Template Configurator</a></li>
                 <li><a id="nid_xml_diff" href="@base_url&pname=xml_diff">XML diff</a></li>
                </ul>
