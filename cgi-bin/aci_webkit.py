@@ -667,6 +667,9 @@ def show_dashboard(rest):
                 </div>
             </div>
         </div><!--/col-->
+        <div>
+        <iframe src="http://10.72.86.107:5601/app/kibana#/dashboard/Total-Board-White?embed=true&_g=(refreshInterval:(display:'5%20seconds',pause:!f,section:1,value:5000),time:(from:now-30s,mode:quick,to:now))&_a=(filters:!(),options:(darkTheme:!f),panels:!((col:1,id:Total-Metric,panelIndex:1,row:1,size_x:2,size_y:6,type:visualization),(col:6,id:Current-Health-History-of-Tenants-with-AEPg,panelIndex:2,row:1,size_x:7,size_y:3,type:visualization),(col:3,id:Current-Health-of-Tenants-with-AEPg,panelIndex:4,row:1,size_x:3,size_y:3,type:visualization),(col:3,id:Tenant-Endpoint-of-AEPg,panelIndex:5,row:4,size_x:5,size_y:3,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'Total%20Board%20-%20White',uiState:(P-2:(spy:(mode:(fill:!f,name:!n))),P-4:(spy:(mode:(fill:!f,name:!n)),vis:(colors:('100':%23508642,'20':%23C15C17),legendOpen:!f)),P-5:(vis:(legendOpen:!t))))" height="800" width="98%"></iframe>
+        </div>
     </div><!--/row-->   
     """)
     print temp.render(locals())
