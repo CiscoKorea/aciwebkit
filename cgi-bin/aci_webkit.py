@@ -511,7 +511,6 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Tenants</div>
-                <span class="percent">percent</span>
                 <span class="countpanel">@fvTenant_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@fvTenant_pct" class="whiteCircle" />
@@ -532,7 +531,7 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Bridge Domains</div>
-                <span class="percent">percent</span>
+                <span class="countpanel">@fvBD_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@fvBD_pct" class="whiteCircle" />
                 </div>
@@ -552,7 +551,7 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Endpoint Groups</div>
-                <span class="percent">percent</span>
+                <span class="countpanel">@fvAEPg_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@fvAEPg_pct" class="whiteCircle" />
                 </div>
@@ -572,7 +571,7 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6 noMargin">
             <div class="circleStatsItemBox">
                 <div class="header">Endpoints</div>
-                <span class="percent">percent</span>
+                <span class="countpanel">@fvCEp_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@fvCEp_pct" class="whiteCircle" />
                 </div>
@@ -592,7 +591,7 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Filters</div>
-                <span class="percent">percent</span>
+                <span class="countpanel">@vzFilter_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@vzFilter_pct" class="whiteCircle" />
                 </div>      
@@ -612,7 +611,7 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Contracts</div>
-                <span class="percent">percent</span>
+                <span class="countpanel">@vzBrCP_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@vzBrCP_pct" class="whiteCircle" />
                 </div>
@@ -632,7 +631,7 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">L4/L7 Devices</div>
-                <span class="percent">percent</span>
+                <span class="countpanel">@vnsCDev_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@vnsCDev_pct" class="whiteCircle" />
                 </div>
@@ -652,7 +651,7 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6 noMargin">
             <div class="circleStatsItemBox">
                 <div class="header">L4/L7 Graphs</div>
-                <span class="percent">percent</span>
+                <span class="countpanel">@vnsGraphInst_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@vnsGraphInst_pct" class="whiteCircle" />
                 </div>
