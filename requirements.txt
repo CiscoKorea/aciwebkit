@@ -1,4 +1,3 @@
 requests
-natsor
 quik
 acitoolkit
