@@ -172,7 +172,8 @@ def print_html_header():
         <!-- start: Dashboard theme - http://bootstrapmaster.com/demo/simpliq/ -->
         <script src="//bootstrapmaster.com/live/simpliq/assets/js/jquery.knob.modified.min.js"></script>
         <script src="//bootstrapmaster.com/live/simpliq/assets/js/core.min.js"></script>
-        <script src="//bootstrapmaster.com/live/simpliq/assets/js/pages/page-infrastructure.js"></script>
+        <!-- <script src="//bootstrapmaster.com/live/simpliq/assets/js/pages/page-infrastructure.js"></script> -->
+        <script src="/src/page-infrastructure.js"></script>
         <script src="//bootstrapmaster.com/live/simpliq/assets/js/jquery-migrate-1.2.1.min.js"></script>
         <!-- end: Dashboard theme -->
         <!-- script for bs3 submenu -->
@@ -511,7 +512,7 @@ def show_dashboard(rest):
             <div class="circleStatsItemBox">
                 <div class="header">Tenants</div>
                 
-                <span class="percent">@fvTenant_cnt percent</span>
+                <span class="percent">percent</span>
                 
                 <div class="circleStat">
                     <input type="text" value="@fvTenant_pct" class="whiteCircle" />
