@@ -2947,6 +2947,13 @@ ul.tickets li.ticket .number {
 	margin-left: 78px
 }
 
+.circleStatsItem .countpanel {
+	font-size: 30px;
+	position: absolute;
+	top : 70%;
+	margin-left: 78px
+}
+
 .circleStatsItem.orange, .circleStatsItem.orange i {
 	color: #fa603d
 }
