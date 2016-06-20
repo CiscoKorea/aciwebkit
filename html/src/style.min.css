@@ -2954,8 +2954,7 @@ ul.tickets li.ticket .number {
     top: 110px;
     width: 100%;
     left: 0;
-    text-align: center;
-    color: rgba(255,255,255,0.9)
+    text-align: center
 }
 
 .circleStatsItem.orange, .circleStatsItem.orange i {
