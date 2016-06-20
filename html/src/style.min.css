@@ -3054,11 +3054,11 @@ ul.tickets li.ticket .number {
 	vertical-align: top;
 	margin-bottom: 6px
 }
-
+/* font-size: 30px */
 .rating {
 	unicode-bidi: bidi-override;
 	direction: rtl;
-	font-size: 30px
+	font-size: 10px
 }
 
 .rating span.star, .rating span.star {
