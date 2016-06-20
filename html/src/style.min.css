@@ -2948,7 +2948,7 @@ ul.tickets li.ticket .number {
 }
 
 
-.countpanel {
+.circleStatsItem .countpanel {
 	font-size: 30px;
     position: absolute;
     top: 110px;
