@@ -2901,9 +2901,7 @@ ul.tickets li.ticket .number {
 	height: 120px;
 	margin: 10px auto
 }
-
-/* font-size: 30px */
-
+/* font-size: 30px; */
 .circleStatsItem i {
 	font-size: 10px;
 	position: absolute;
@@ -2942,10 +2940,8 @@ ul.tickets li.ticket .number {
 	margin-left: 30px
 }
 
-/* font-size: 14px */
-
 .circleStatsItem .percent {
-	font-size: 10px;
+	font-size: 14px;
 	position: absolute;
 	top: 57%;
 	margin-left: 78px
