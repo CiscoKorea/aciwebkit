@@ -2901,9 +2901,9 @@ ul.tickets li.ticket .number {
 	height: 120px;
 	margin: 10px auto
 }
-/* font-size: 30px; */
+
 .circleStatsItem i {
-	font-size: 10px;
+	font-size: 30px;
 	position: absolute;
 	top: 30%;
 	margin-top: 0;
@@ -2944,6 +2944,13 @@ ul.tickets li.ticket .number {
 	font-size: 14px;
 	position: absolute;
 	top: 57%;
+	margin-left: 78px
+}
+
+.circleStatsItem .countpanel {
+	font-size: 30px;
+	position: absolute;
+	top : 70%;
 	margin-left: 78px
 }
 
@@ -3054,11 +3061,11 @@ ul.tickets li.ticket .number {
 	vertical-align: top;
 	margin-bottom: 6px
 }
-/* font-size: 30px */
+
 .rating {
 	unicode-bidi: bidi-override;
 	direction: rtl;
-	font-size: 10px
+	font-size: 30px
 }
 
 .rating span.star, .rating span.star {

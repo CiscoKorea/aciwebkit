@@ -514,6 +514,8 @@ def show_dashboard(rest):
                 
                 <span class="percent">percent</span>
                 
+                <span class="countpanel">@fvTenant_cnt</span>
+                
                 <div class="circleStat">
                     <input type="text" value="@fvTenant_pct" class="whiteCircle" />
                 </div>
