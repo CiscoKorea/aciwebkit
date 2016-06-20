@@ -2922,7 +2922,7 @@ ul.tickets li.ticket .number {
 	top: 15px;
 	left: 120px;
 	padding: 5px 0 !important;
-	border-color: rgba(0, 0, 0, 0.8)
+	border-color: red
 }
 
 .circleStatsItem input:focus {
