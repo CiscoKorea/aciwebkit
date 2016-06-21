@@ -208,12 +208,15 @@ def print_navbar(aip, usr, pwd):
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <img src="/src/sk-hynix-logo.png" width="60px" heigth="60px"/>
-          <a id="nid_show_dashboard" class="navbar-brand" href="@base_url">ACI Webkit</a>
+          <a id="nid_show_dashboard" class="navbar-brand" href="@base_url">
+              <table>
+                <tr>
+                <td><img src="/src/sk-hynix-logo.png" width="60px" heigth="60px"/></td>
+                <td>ACI Webkit</td>
+                </tr>
+              </table>
+          </a>
         </div>
-        
-        
-        
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="dropdown">
