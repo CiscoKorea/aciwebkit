@@ -1391,7 +1391,7 @@ def show_ep_tracker(rest):
     # Print Endpoint Tracker
     
     print '''
-    <iframe src="http://localhost:8808" height="100%" width="100%" frameborder="0"></iframe>
+    <iframe src="http://10.72.86.50:8808" height="100%" width="100%" frameborder="0"></iframe>
     '''
 
 def show_ep(rest):
