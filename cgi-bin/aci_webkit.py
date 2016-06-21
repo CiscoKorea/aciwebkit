@@ -1425,14 +1425,14 @@ def show_ep_tracker(rest):
     entry = []
     for row in cur:
         entry = []
-        entry.append(raw[0])
-        entry.append(raw[1])
-        entry.append(raw[2])
-        entry.append(raw[3])
-        entry.append(raw[4])
-        entry.append(raw[5])
-        entry.append(raw[6])
-        entry.append(raw[7])
+        entry.append(row[0])
+        entry.append(row[1])
+        entry.append(row[2])
+        entry.append(row[3])
+        entry.append(row[4])
+        entry.append(row[5])
+        entry.append(row[6])
+        entry.append(row[7])
         data['data'].append(entry)
     
     print_data_table(save_table_data(data))
