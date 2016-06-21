@@ -85,7 +85,8 @@ def print_html_header():
            'stat_intf',
            'find_dup_ip',
            'flip_port',
-           'xml_diff']
+           'xml_diff',
+           'snap_back']
     temp = Template("""
     <!DOCTYPE html>
     <html>
@@ -252,6 +253,7 @@ def print_navbar(aip, usr, pwd):
               <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-wrench"></span> Tools <span class="caret"></span></a>
                <ul class="dropdown-menu">
                 <li><a id="nid_find_dup_ip" href="@base_url&pname=find_dup_ip">Find EP with Dup IP</a></li>
+                <li><a id="nid_find_dup_ip" href="@base_url&pname=snap_back">Snap Back</a></li>
                 <li><a href="http://ecats-wiki/Templatized_APIC_Configurator" target="_blank">Template Configurator</a></li>
                 <li><a id="nid_xml_diff" href="@base_url&pname=xml_diff">XML diff</a></li>
                </ul>
@@ -1389,10 +1391,8 @@ def show_ctrct_detail(apic_url, md, rest):
 
 def show_ep_tracker(rest):
     # Print Endpoint Tracker
-    
-    print '''
-    <iframe src="http://10.72.86.50:8808" height="900px" width="100%" frameborder="0"></iframe>
-    '''
+    base_url = 'http://' + re.sub(r'&pname.*$', "", URL)
+    print '<iframe src=\"' + base_url + ':8808\" height=\"900px\" width=\"100%\" frameborder=\"0\"></iframe>'
 
 def show_ep(rest):
     # Print the endpoint list
@@ -2660,6 +2660,10 @@ def xml_diff(form):
         """)
         print temp.render(locals())
 
+def snap_back(rest):
+    print '''
+    <iframe src="http://10.72.86.51:8810" height="900px" width="100%" frameborder="0"></iframe>
+    '''
 
 def cobra_login(apic_url, USER, PASS):
     """login to apic with Cobra SDK.
@@ -2781,6 +2785,9 @@ def main():
     elif pname == 'xml_diff':
         # Show the xml diff page
         xml_diff(form)
+    elif pname == 'snap_back':
+        # Link Snap back
+        snap_back(rest)
     else:
         # Show the dashboard
         rest = rest_login(APIC, USER, PASS)
