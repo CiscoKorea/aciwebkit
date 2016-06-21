@@ -233,6 +233,7 @@ def print_navbar(aip, usr, pwd):
                     </ul>
                 </li>
                 <li><a id="nid_show_ep" href="@base_url&pname=show_ep">End Point</a></li>
+                <li><a id="nid_show_ep" href="@base_url&pname=show_ep_track">End Point Tracker</a></li>
                 <li><a id="nid_show_epg" href="@base_url&pname=show_epg">End Point Group</a></li>
                 <li><a id="nid_show_instP" href="@base_url&pname=show_instP">L3 External Network</a></li>
                 <li><a id="nid_show_rule" href="@base_url&pname=show_rule">Rule</a></li>
@@ -1385,6 +1386,10 @@ def show_ctrct_detail(apic_url, md, rest):
         data['data'].append(entry)
     print_data_table(save_table_data(data), 'hide_first_col')
 
+def show_ep_tracker(rest):
+    print '''
+    <iframe src="http://10.72.86.51:8808" height="100%" width="100%" frameborder="0"></iframe>
+    '''
 
 def show_ep(rest):
     # Print the endpoint list
@@ -2729,6 +2734,10 @@ def main():
         # Show the endpoint list
         rest = rest_login(APIC, USER, PASS)
         show_ep(rest)
+    elif pname == 'show_ep_tracker':
+        # Show Endpoint Tracker
+        rest = rest_login(APIC, USER, PASS)
+        show_ep_tracker(rest)
     elif pname == 'show_epg':
         # Show the EPG list
         rest = rest_login(APIC, USER, PASS)
