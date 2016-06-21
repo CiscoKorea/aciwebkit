@@ -512,7 +512,7 @@ def show_dashboard(rest):
             <div class="circleStatsItemBox">
                 <div class="header">Tenants</div>
                 <div class="circleStat">
-                    <input type="text" value="@fvTenant_pct" class="whiteCircle" />
+                    <input type="text" value="@fvTenant_cnt" class="whiteCircle" />
                 </div>
                 <span class="countpanel">@fvTenant_cnt</span>
                 <div class="footer">
