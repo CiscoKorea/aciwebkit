@@ -79,6 +79,19 @@ $(document).ready(function(){
 		        'thickness': 0.2,
 		        'tickColorizeValues': true
 		    });
+			
+			$(".orangeCircle").knob({
+				'min':0,
+		        'max':100,
+		        'readOnly': true,
+		        'width': 240,
+		        'height': 240,
+				'bgColor': 'rgba(255,255,255,0.5)',
+		        'fgColor': 'rgba(234, 70, 16, 0.901961)',
+		        'dynamicDraw': true,
+		        'thickness': 0.2,
+		        'tickColorizeValues': true
+			});
 
 			//only firefox sux in this case
 			if (jQuery.browser.mozilla) {
@@ -105,6 +118,19 @@ $(document).ready(function(){
 		        'thickness': 0.2,
 		        'tickColorizeValues': true
 		    });
+			
+			$(".orangeCircle").knob({
+				'min':0,
+		        'max':100,
+		        'readOnly': true,
+		        'width': 120,
+		        'height': 120,
+				'bgColor': 'rgba(255,255,255,0.5)',
+		        'fgColor': 'rgba(234, 70, 16, 0.901961)',
+		        'dynamicDraw': true,
+		        'thickness': 0.2,
+		        'tickColorizeValues': true
+			});
 
 		}
 		
