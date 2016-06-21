@@ -678,7 +678,7 @@ def show_dashboard(rest):
                 </div>
             </div>
         </div><!--/col-->
-        <div>
+        <div class="circleStatsItemBox">
         <iframe src="http://10.72.86.107:5601/app/kibana#/visualize/edit/Current-Health-History-of-Tenants-with-AEPg?embed=true&_g=(refreshInterval:(display:'5%20seconds',pause:!f,section:1,value:5000),time:(from:now-30s,mode:relative,to:now))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(),vis:(aggs:!((id:'1',params:(customLabel:Health,field:tenant_health_cur),schema:metric,type:avg),(id:'2',params:(customInterval:'2h',customLabel:Tenants,extended_bounds:(),field:'@timestamp',interval:auto,min_doc_count:1),schema:segment,type:date_histogram),(id:'3',params:(customLabel:Tenant,field:desc.tenant,include:(pattern:''),order:desc,orderBy:'1',size:20),schema:group,type:terms)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,drawLinesBetweenPoints:!t,interpolate:linear,radiusRatio:9,scale:linear,setYExtents:!t,shareYAxis:!t,showCircles:!t,smoothLines:!f,times:!(),yAxis:(max:100,min:0)),title:'Current%20Health%20History%20of%20Tenants%20with%20AEPg',type:line))" height="300" width="100%" frameborder="0"></iframe>
         </div>
     </div><!--/row-->   
