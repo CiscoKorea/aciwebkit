@@ -1431,8 +1431,8 @@ def show_ep_tracker(rest):
         entry.append(row[3])
         entry.append(row[4])
         entry.append(row[5])
-        entry.append(row[6])
-        entry.append(row[7])
+        entry.append(str(row[6]))
+        entry.append(str(row[7]))
         data['data'].append(entry)
     
     print_data_table(save_table_data(data))
