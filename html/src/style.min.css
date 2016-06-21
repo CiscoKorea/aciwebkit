@@ -3032,7 +3032,7 @@ ul.tickets li.ticket .number {
 	font-size: 50px;
 	position: absolute;
 	font-weight: bold;
-    top: 40px;
+    height: 40%;
     width: 100%;
     left: 0;
     text-align: center;
