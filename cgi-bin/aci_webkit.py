@@ -563,6 +563,7 @@ def show_dashboard(rest):
             </div>
         </div><!--/col-->
         <div class="col-md-3 col-sm-4 col-xs-6">
+            <a href="@base_url&pname=show_epg">
             <div class="circleStatsItemBox">
                 <div class="header">Endpoint Groups</div>
                 <div class="circleStat">
@@ -581,8 +582,10 @@ def show_dashboard(rest):
                     </span> 
                 </div>
             </div>
+            </a>
         </div><!--/col-->
         <div class="col-md-3 col-sm-4 col-xs-6 noMargin">
+            <a href="@base_url&pname=show_ep">
             <div class="circleStatsItemBox">
                 <div class="header">Endpoints</div>
                 <div class="circleStat">
@@ -601,6 +604,7 @@ def show_dashboard(rest):
                     </span> 
                 </div>
             </div>
+            </a>
         </div><!--/col-->
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
