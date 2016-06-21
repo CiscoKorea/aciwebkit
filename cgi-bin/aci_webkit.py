@@ -1763,7 +1763,7 @@ def show_instP(apic_url, md, rest):
         entry.append('<a href="{}" target="_blank">{}</a>'.format(instP_url, l3extInstP.name))
         entry.append(instP_list[instP_dn, 'tn'])
         if l3extInstP.scope in ctx_list: entry.append(ctx_list[l3extInstP.scope])
-        else: entry.append('None')
+        else: entry.append('Non-Context')
         entry.append(instP_list[instP_dn, 'l3out'])
         entry.append('<br>'.join(natsorted(instP_list[instP_dn, 'subnet'].split('<br>'))))
         entry.append('<br>'.join(natsorted(instP_list[instP_dn, 'cons_ctrct'].split('<br>'))))
