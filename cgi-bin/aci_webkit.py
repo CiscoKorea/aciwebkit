@@ -2660,9 +2660,11 @@ def xml_diff(form):
         print temp.render(locals())
 
 def snap_back(rest):
-    print '''
-    <iframe src="http://10.72.86.51:8810" height="900px" width="100%" frameborder="0"></iframe>
-    '''
+    
+    print '<iframe src=\"http://' + os.environ['HTTP_HOST'] + ':8810\" height=\"900px\" width=\"100%\" frameborder=\"0\"></iframe>'
+#     print '''
+#     <iframe src="http://10.72.86.51:8810" height="900px" width="100%" frameborder="0"></iframe>
+#     '''
 
 def cobra_login(apic_url, USER, PASS):
     """login to apic with Cobra SDK.
