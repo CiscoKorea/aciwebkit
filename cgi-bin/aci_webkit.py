@@ -516,6 +516,7 @@ def show_dashboard(rest):
     <h2>Dashboard</h2>
     <div class="circleStats row hideInIE8">
         <div class="col-md-3 col-sm-4 col-xs-6">
+            <a href="@base_url&pname=show_tenant">
             <div class="circleStatsItemBox">
                 <div class="header">Tenants</div>
                 <div class="circleStat">
@@ -534,6 +535,7 @@ def show_dashboard(rest):
                     </span> 
                 </div>
             </div>
+            </a>
         </div><!--/col-->
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
