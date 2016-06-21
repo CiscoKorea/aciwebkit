@@ -2786,6 +2786,7 @@ def main():
         xml_diff(form)
     elif pname == 'snap_back':
         # Link Snap back
+        rest = rest_login(APIC, USER, PASS)
         snap_back(rest)
     else:
         # Show the dashboard
