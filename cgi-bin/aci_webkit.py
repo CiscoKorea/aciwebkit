@@ -211,7 +211,7 @@ def print_navbar(aip, usr, pwd):
           <a id="nid_show_dashboard" class="navbar-brand" href="@base_url">
               <table>
                 <tr>
-                <td><img src="/src/sk-hynix-logo.png" width="60px" heigth="60px"/></td>
+                <td width="60px"><img src="/src/sk-hynix-logo.png" width="50px" heigth="50px"/></td>
                 <td>ACI Webkit</td>
                 </tr>
               </table>
