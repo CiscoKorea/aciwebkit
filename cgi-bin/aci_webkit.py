@@ -488,6 +488,7 @@ def interface_enable(session, interface, tDn):
 
 
 def show_dashboard(rest):
+    base_url = 'http://' + re.sub(r'&pname.*$', "", URL)
     fvTenant_max = 64000
     fvBD_max = 15000
     fvAEPg_max = 15000
