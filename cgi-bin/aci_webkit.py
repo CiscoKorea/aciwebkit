@@ -511,10 +511,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Tenants</div>
-                <span class="countpanel">@fvTenant_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@fvTenant_pct" class="whiteCircle" />
                 </div>
+                <span class="countpanel">@fvTenant_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@fvTenant_cnt</span>
@@ -531,10 +531,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Bridge Domains</div>
-                <span class="countpanel">@fvBD_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@fvBD_pct" class="whiteCircle" />
                 </div>
+                <span class="countpanel">@fvBD_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@fvBD_cnt</span>
@@ -551,10 +551,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Endpoint Groups</div>
-                <span class="countpanel">@fvAEPg_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@fvAEPg_pct" class="whiteCircle" />
                 </div>
+                <span class="countpanel">@fvAEPg_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@fvAEPg_cnt</span>
@@ -571,10 +571,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6 noMargin">
             <div class="circleStatsItemBox">
                 <div class="header">Endpoints</div>
-                <span class="countpanel">@fvCEp_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@fvCEp_pct" class="whiteCircle" />
                 </div>
+                <span class="countpanel">@fvCEp_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@fvCEp_cnt</span>
@@ -591,10 +591,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Filters</div>
-                <span class="countpanel">@vzFilter_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@vzFilter_pct" class="whiteCircle" />
-                </div>      
+                </div>
+                <span class="countpanel">@vzFilter_cnt</span>      
                 <div class="footer">
                     <span class="count">
                         <span class="number">@vzFilter_cnt</span>
@@ -611,10 +611,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Contracts</div>
-                <span class="countpanel">@vzBrCP_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@vzBrCP_pct" class="whiteCircle" />
                 </div>
+                <span class="countpanel">@vzBrCP_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@vzBrCP_cnt</span>
@@ -631,10 +631,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">L4/L7 Devices</div>
-                <span class="countpanel">@vnsCDev_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@vnsCDev_pct" class="whiteCircle" />
                 </div>
+                <span class="countpanel">@vnsCDev_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@vnsCDev_cnt</span>
@@ -651,10 +651,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6 noMargin">
             <div class="circleStatsItemBox">
                 <div class="header">L4/L7 Graphs</div>
-                <span class="countpanel">@vnsGraphInst_cnt</span>
                 <div class="circleStat">
                     <input type="text" value="@vnsGraphInst_pct" class="whiteCircle" />
                 </div>
+                <span class="countpanel">@vnsGraphInst_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@vnsGraphInst_cnt</span>
