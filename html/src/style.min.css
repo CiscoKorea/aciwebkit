@@ -2989,8 +2989,7 @@ ul.tickets li.ticket .number {
 	background: rgba(255, 255, 255, 0.2);
 	color: rgba(255, 255, 255, 0.9);
 	width: 100%;
-	height: 0px;
-	padding: 5px 0;
+	height: 20px;
 	position: absolute;
 	top: 0;
 	-webkit-box-sizing: content-box;
@@ -3002,7 +3001,7 @@ ul.tickets li.ticket .number {
 	background: rgba(0, 0, 0, 0.1);
 	color: rgba(255, 255, 255, 0.9);
 	width: 100%;
-	height: 0px;
+	height: 20px;
 	padding: 5px 0;
 	position: absolute;
 	bottom: 0;
@@ -3012,11 +3011,10 @@ ul.tickets li.ticket .number {
 }
 
 .circleStatsItemBox .footer .count {
-	font-size: 20px !important
+	font-size: 10px
 }
 
 .circleStatsItemBox .footer .value {
-	font-size: 20px !important;
 	font-weight: bold
 }
 
