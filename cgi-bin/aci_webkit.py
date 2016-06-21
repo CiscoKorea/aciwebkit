@@ -1387,9 +1387,13 @@ def show_ctrct_detail(apic_url, md, rest):
     print_data_table(save_table_data(data), 'hide_first_col')
 
 def show_ep_tracker(rest):
-    print '''
-    <iframe src="http://10.72.86.51:8808" height="100%" width="100%" frameborder="0"></iframe>
-    '''
+    # Print Endpoint Tracker
+    
+    print '<h2>Endpoint Tracker</h2>' 
+    
+#     print '''
+#     <iframe src="http://10.72.86.51:8808" height="100%" width="100%" frameborder="0"></iframe>
+#     '''
 
 def show_ep(rest):
     # Print the endpoint list
