@@ -26,6 +26,9 @@ from quik import Template   # A fast and lightweight Python template engine
 import subprocess, glob, shutil, tempfile
 from natsort import natsorted   # sort based on natural language
 
+import pymysql
+# from pymysql import connect
+
 try:
     import requests.packages.urllib3
     requests.packages.urllib3.disable_warnings()
@@ -1395,7 +1398,41 @@ def show_ctrct_detail(apic_url, md, rest):
 
 def show_ep_tracker(rest):
     # Print Endpoint Tracker
-    print '<iframe src=\"http://' + os.environ['HTTP_HOST'] + ':8808\" height=\"900px\" width=\"100%\" frameborder=\"0\"></iframe>'
+    print '<h2>Endpoint Tracker</h2>'
+    print '''
+    <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>MAC</th>
+                <th>IP</th>
+                <th>Tenant</th>
+                <th>App</th>
+                <th>Endpoint Group</th>
+                <th>Interface</th>
+                <th>Time Start</th>
+                <th>Time stop</th>
+            </tr>
+        </thead>
+    </table>
+    '''
+    
+    pymysql.connect(host='localhost', port=3306, user='root', passwd='1234Qwer', db='endpointtracker')
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM endpoints")
+    
+    print_data_table(save_table_data(cur))
+#     for row in cur:
+        
+# | mac       | char(18)  | NO   |     | NULL                |                             |
+# | ip        | char(16)  | YES  |     | NULL                |                             |
+# | tenant    | char(100) | NO   |     | NULL                |                             |
+# | app       | char(100) | NO   |     | NULL                |                             |
+# | epg       | char(100) | NO   |     | NULL                |                             |
+# | interface | char(100) | NO   |     | NULL                |                             |
+# | timestart | timestamp | NO   |     | CURRENT_TIMESTAMP   | on update CURRENT_TIMESTAMP |
+# | timestop  | timestamp | NO   |     | 0000-00-00 00:00:00 |                             |
+    
+#     print '<iframe src=\"http://' + os.environ['HTTP_HOST'] + ':8808\" height=\"900px\" width=\"100%\" frameborder=\"0\"></iframe>'
 
 def show_ep(rest):
     # Print the endpoint list
