@@ -3039,7 +3039,7 @@ ul.tickets li.ticket .number {
     color: rgba(255, 255, 255, 0.9)
 }
 
-/* .circleStatsItemBox input {
+.circleStatsItemBox input {
 	cursor: default;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -3051,22 +3051,6 @@ ul.tickets li.ticket .number {
 	padding: 5px 0 !important;
 	color: #67c2ef;
 	border-color: rgba(0, 0, 0, 0.8)
-} */
-
-circleStatsItemBox .newinput {
-	width: 60px;
-    position: absolute;
-    margin-top: 42.8571px;
-    margin-left: -90px;
-    font-size: 30px;
-    border: none;
-    font-family: Arial;
-    font-weight: bold;
-    text-align: center;
-    color: #67c2ef;
-    padding: 0px;
-    -webkit-appearance: none;
-    background: none;
 }
 
 .circleStatsItemBox input:focus {
