@@ -1416,7 +1416,7 @@ def show_ep_tracker(rest):
     </table>
     '''
     
-    pymysql.connect(host='localhost', port=3306, user='root', passwd='1234Qwer', db='endpointtracker')
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='1234Qwer', db='endpointtracker')
     cur = conn.cursor()
     cur.execute("SELECT * FROM endpoints")
     
