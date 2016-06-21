@@ -3010,10 +3010,11 @@ ul.tickets li.ticket .number {
 }
 
 .circleStatsItemBox .footer .count {
-	font-size: 10px
+	font-size: 20px
 }
 
 .circleStatsItemBox .footer .value {
+	font-size: 20px;
 	font-weight: bold
 }
 
