@@ -3039,6 +3039,10 @@ ul.tickets li.ticket .number {
     color: rgba(255, 255, 255, 0.9)
 }
 
+
+/* rgba(255, 255, 255, 0.901961)
+color: #67c2ef; */
+
 .circleStatsItemBox input {
 	cursor: default;
 	-webkit-box-shadow: none;
@@ -3049,7 +3053,7 @@ ul.tickets li.ticket .number {
 	position: absolute;
 	top: 30px;
 	padding: 5px 0 !important;
-	color: #67c2ef;
+	color: rgba(255, 255, 255, 0.901961);
 	border-color: rgba(0, 0, 0, 0.8)
 }
 
