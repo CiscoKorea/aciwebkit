@@ -3039,7 +3039,7 @@ ul.tickets li.ticket .number {
     color: rgba(255, 255, 255, 0.9)
 }
 
-.circleStatsItemBox .input {
+.circleStatsItemBox input {
 	cursor: default;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
