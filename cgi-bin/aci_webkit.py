@@ -56,15 +56,15 @@ def print_html_header():
         DualListbox_script = ''
     # source css/javascript for jasny file input and mergely diff
     if 'xml_diff' in URL:
-        jasny_script = '<script src="http://www.jasny.net/bootstrap/dist/js/jasny-bootstrap.min.js"></script>\
-                        <link href="http://www.jasny.net/bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet">'
+        jasny_script = '<script src="/src/jasny-bootstrap.min.js"></script>\
+                        <link href="/src/jasny-bootstrap.min.css" rel="stylesheet">'
         mergely_script = '<!-- Requires CodeMirror 2.16 -->\
-                        <script type="text/javascript" src="http://www.mergely.com/Mergely/lib/codemirror.js"></script>\
-                        <script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>\
-                        <link type="text/css" rel="stylesheet" href="http://www.mergely.com/Mergely/lib/codemirror.css" />\
+                        <script type="text/javascript" src="/src/codemirror.js"></script>\
+                        <script type="text/javascript" src="/src/xml.js"></script>\
+                        <link type="text/css" rel="stylesheet" href="/src/codemirror.css" />\
                         <!-- Requires Mergely -->\
-                        <script type="text/javascript" src="http://www.mergely.com/Mergely/lib/mergely.js"></script>\
-                        <link type="text/css" rel="stylesheet" href="http://www.mergely.com/Mergely/lib/mergely.css" />'
+                        <script type="text/javascript" src="/src/mergely.js"></script>\
+                        <link type="text/css" rel="stylesheet" href="/src/mergely.css" />'
     else:
         jasny_script = ''
         mergely_script = ''
@@ -95,19 +95,19 @@ def print_html_header():
         <!-- start: customized stylesheet with navbar-brand -->
         @dashboard_css
         <!-- end: customized stylesheet -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <!-- <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css"> -->
+        <link rel="stylesheet" href="/src/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="/src/dataTables.bootstrap.css"> -->
         <link rel="stylesheet" href="/src/dataTables.bootstrap.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css">
-        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-        <script src="//cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/1.10.10/sorting/natural.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+        <link rel="stylesheet" href="/src/buttons.dataTables.min.css">
+        <script src="/src/jquery-1.12.0.min.js"></script>
+        <script src="/src/jquery.dataTables.min.js"></script>
+        <script src="/src/dataTables.buttons.min.js"></script>
+        <script src="/src/dataTables.bootstrap.js"></script>
+        <script src="/src/jszip.min.js"></script>
+        <script src="/src/buttons.html5.min.js"></script>
+        <script src="/src/natural.js"></script>
+        <script src="/src/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/src/spin.min.js"></script>
         <!-- start: stylesheet/javascript for DualListbox -->
         @DualListbox_script
         <!-- end: stylesheet/javascript for DualListbox -->
@@ -170,11 +170,11 @@ def print_html_header():
         </script>
         <!-- end: spinner -->
         <!-- start: Dashboard theme - http://bootstrapmaster.com/demo/simpliq/ -->
-        <script src="//bootstrapmaster.com/live/simpliq/assets/js/jquery.knob.modified.min.js"></script>
-        <script src="//bootstrapmaster.com/live/simpliq/assets/js/core.min.js"></script>
-        <script src="//bootstrapmaster.com/live/simpliq/assets/js/pages/page-infrastructure.js"></script>
+        <script src="/src/jquery.knob.modified.min.js"></script>
+        <script src="/src/core.min.js"></script>
+        <script src="/src/page-infrastructure.js"></script>
         <!-- <script src="/src/page-infrastructure.js"></script> -->
-        <script src="//bootstrapmaster.com/live/simpliq/assets/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/src/jquery-migrate-1.2.1.min.js"></script>
         <!-- end: Dashboard theme -->
         <!-- script for bs3 submenu -->
         <script>

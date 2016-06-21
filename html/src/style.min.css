@@ -34,11 +34,11 @@
 
 @import "jquery.easy-pie-chart.css";
 
-@import url(http://fonts.googleapis.com/css?family=Lato:300);
+@import "Lato300";
 
-@import url(http://fonts.googleapis.com/css?family=Lato:400);
+@import "Lato400";
 
-@import url(http://fonts.googleapis.com/css?family=Kaushan+Script); /*!
+@import "Kaushan_Script"; /*!
 * Author: Łukasz Holeczek
 * Template: SimpliQ - Flat & Responsive Bootstrap Admin Template
 * Version: 2.1.4 
