@@ -1391,7 +1391,7 @@ def show_ctrct_detail(apic_url, md, rest):
 
 def show_ep_tracker(rest):
     # Print Endpoint Tracker
-    print '<iframe src=\"' + os.environ['HTTP_HOST'] + ':8808\" height=\"900px\" width=\"100%\" frameborder=\"0\"></iframe>'
+    print '<iframe src=\"http://' + os.environ['HTTP_HOST'] + ':8808\" height=\"900px\" width=\"100%\" frameborder=\"0\"></iframe>'
 
 def show_ep(rest):
     # Print the endpoint list
