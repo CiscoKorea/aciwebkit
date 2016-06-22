@@ -2122,7 +2122,7 @@ def stat_epg(rest, tname):
         </table>
         '''
         
-        epg_stats = get_json(rest, 'api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
+        epg_stats = get_json(rest, '/api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
          
         data = {}
         data['data'] = []
