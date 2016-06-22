@@ -2117,8 +2117,8 @@ def stat_epg(rest, tname):
                 <tr>
                     <th>App Name</th>
                     <th>EPG Name</th>
-                    <th>Bytes Rate(Byte/sec)</th>
-                    <th>Packets Rate(Packet/sec)</th>
+                    <th>Bytes Rate(Bps)</th>
+                    <th>Packets Rate(pps)</th>
                 </tr>
             </thead>
         </table>
