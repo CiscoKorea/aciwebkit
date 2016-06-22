@@ -2109,16 +2109,19 @@ def stat_epg(rest, tname):
     
     if tname != None:
         
-        epg_stats = get_json(rest, '/api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
+        byte_stats = get_json(rest, '/api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
+        pkt_stats = get_json(rest, '/api/node/class/l2IngrPktsAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
         print '<h2>EPG %s Utilization</h2>' % tname
         print '''
         <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>App Name</th>
-                    <th>EPG Name</th>
+                    <th>App Name B</th>
+                    <th>EPG Name B</th>
+                    <th>PKT DN</th>
                     <th>Status</th>
-                    <th>Bytes Rate(Bytes/sec)<th>
+                    <th>Bytes Rate(Byte/sec)</th>
+                    <th>Packets Rate(Packet/sec)</th>
                 </tr>
             </thead>
         </table>
@@ -2126,16 +2129,26 @@ def stat_epg(rest, tname):
         
         data = {}
         data['data'] = []
-        for epg_stat in epg_stats:
+        for i, byte_stat in byte_stats.itervalue():
+            pkt_stat = pkt_stats[i]
+            
             entry = []
-            dn_split = str(epg_stat['l2IngrBytesAg15min']['attributes']['dn']).split('/')
-            status = str(epg_stat['l2IngrBytesAg15min']['attributes']['status'])
-            bytes_rate = str(epg_stat['l2IngrBytesAg15min']['attributes']['unicastRate'])
-            entry.append(dn_split[2].split('-')[1])
-            entry.append(dn_split[3].split('-')[1])
+            dn = str(epg_stat['l2IngrBytesAg15min']['attributes']['dn'])
+            rns = dn.split('/')
+            app = rns[2].split('-')[1]
+            epg = rns[3].split('-')[1]
+            byte_rate = str(byte_stat['l2IngrBytesAg15min']['attributes']['unicastRate'])
+            pkt_rate = str(pkt_stat['l2IngrPktsAg15min']['attributes']['unicastRate'])
+            
+            entry.append(app)
+            entry.append(epg)
+            entry.append(pkt_stat['l2IngrPktsAg15min']['attributes']['dn'])
             entry.append(status)
             entry.append(bytes_rate)
+            entry.append(pkt_rate)
+            
             data['data'].append(entry)
+
         print_data_table(save_table_data(data))
 
 def stat_intf(session, nid, md):
