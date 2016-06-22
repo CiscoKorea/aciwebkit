@@ -2116,8 +2116,8 @@ def stat_epg(rest, tname):
         <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>App Name B</th>
-                    <th>EPG Name B</th>
+                    <th>App Name</th>
+                    <th>EPG Name</th>
                     <th>PKT DN</th>
                     <th>Bytes Rate(Byte/sec)</th>
                     <th>Packets Rate(Packet/sec)</th>
