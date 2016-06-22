@@ -235,7 +235,7 @@ def print_navbar(aip, usr, pwd):
                     </ul>
                 </li>
                 <li><a id="nid_show_ep" href="@base_url&pname=show_ep">End Point</a></li>
-                <li><a id="nid_show_ep" href="@base_url&pname=show_ep_tracker">End Point Tracker</a></li>
+                <li><a id="nid_show_ep_tracker" href="@base_url&pname=show_ep_tracker">End Point Tracker</a></li>
                 <li><a id="nid_show_epg" href="@base_url&pname=show_epg">End Point Group</a></li>
                 <li><a id="nid_show_instP" href="@base_url&pname=show_instP">L3 External Network</a></li>
                 <li><a id="nid_show_rule" href="@base_url&pname=show_rule">Rule</a></li>
@@ -247,13 +247,14 @@ def print_navbar(aip, usr, pwd):
               <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-signal"></span> Stats <span class="caret"></span></a>
                <ul class="dropdown-menu">
                 <li><a id="nid_stat_intf" href="@base_url&pname=stat_intf">Interface Utilization</a></li>
+                <li><a id="nid_stat_epg" href="@base_url&pname=stat_epg">EPG Utilization</a></li>
                </ul>
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-wrench"></span> Tools <span class="caret"></span></a>
                <ul class="dropdown-menu">
                 <li><a id="nid_find_dup_ip" href="@base_url&pname=find_dup_ip">Find EP with Dup IP</a></li>
-                <li><a id="nid_find_dup_ip" href="@base_url&pname=snap_back">Snap Back</a></li>
+                <li><a id="nid_snap_back" href="@base_url&pname=snap_back">Snap Back</a></li>
                 <li><a href="http://ecats-wiki/Templatized_APIC_Configurator" target="_blank">Template Configurator</a></li>
                 <li><a id="nid_xml_diff" href="@base_url&pname=xml_diff">XML diff</a></li>
                </ul>
