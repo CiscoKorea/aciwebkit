@@ -2117,7 +2117,6 @@ def stat_epg(rest, tname):
                 <tr>
                     <th>App Name</th>
                     <th>EPG Name</th>
-                    <th>PKT DN</th>
                     <th>Bytes Rate(Byte/sec)</th>
                     <th>Packets Rate(Packet/sec)</th>
                 </tr>
@@ -2142,7 +2141,6 @@ def stat_epg(rest, tname):
             
             entry.append(app)
             entry.append(epg)
-            entry.append(pkt_stat['l2IngrPktsAg15min']['attributes']['dn'])
             entry.append(byte_rate)
             entry.append(pkt_rate)
             
