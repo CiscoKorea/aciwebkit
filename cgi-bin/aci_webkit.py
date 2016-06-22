@@ -86,6 +86,7 @@ def print_html_header():
            'show_subnet', 
            'show_tenant',
            'stat_intf',
+           'stat_epg',
            'find_dup_ip',
            'flip_port',
            'xml_diff',
@@ -2090,6 +2091,25 @@ def show_tenant(rest):
     </table>
     '''
 
+def stat_epg(rest, tname):
+    if tname is None:
+        base_url = 'http://' + re.sub(r'&pname.*$', "", URL)
+        tenants = get_json(rest, '/api/class/fvTenant.json')['imdata']
+        data = ''
+        names = []
+        for tenant in tenants:
+            tenant_name = str(tenant['fvTenant']['attributes']['name'])
+            names.append(tenant_name)
+            tenant_url = 'http://' + base_url + '&tname=' + tenant_name
+            data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"tname_' + tenant_name + '\" onclick=\"location.href=\'' + tenant_url + '\'\">' + tenant_name + '</button>'
+        print '<h2>Please select a tenant:</h2>'
+        spinner(names, 'show')
+        print '''<div class="btn-group" role="group" aria-label="...">'''
+        print data
+        print '''</div>'''
+    else:
+        pass
+    
 
 def stat_intf(session, nid, md):
     if nid is None:
@@ -2829,6 +2849,10 @@ def main():
         nid = form.getfirst("nid")
         md = cobra_login(apic_url, USER, PASS)
         stat_intf(session, nid, md)
+    elif pname == 'stat_epg':
+        tname = form.getFirst("tname")
+        rest = rest_login(APIC, USER, PASS)
+        stat_epg(rest, tname)
     elif pname == 'find_dup_ip':
         # Show the find ep with dup ip page
         rest = rest_login(APIC, USER, PASS)
