@@ -2093,33 +2093,34 @@ def show_tenant(rest):
     '''
 
 def stat_epg(rest, tname):
-    if tname is None:
-        tenants = get_json(rest, '/api/class/fvTenant.json')['imdata']
-        data = ''
-        names = []
-        for tenant in tenants:
-            tenant_name = str(tenant['fvTenant']['attributes']['name'])
-            names.append(tenant_name)
-            tenant_url = 'http://' + re.sub(r'&nid.*$', "", URL) + '&tname=' + tenant_name
-            data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"tname_' + tenant_name + '\" onclick=\"location.href=\'' + tenant_url + '\'\">' + tenant_name + '</button>'
-        print '<h2>Please select a tenant:</h2>'
-        spinner(names, 'show')
-        print '''<div class="btn-group" role="group" aria-label="...">'''
-        print data
-        print '''</div>'''
-    else:
-        print '<h2>EPG %s Utilization</h2>' % tname
+    print '<h2>EPG %s Utilization</h2>' % tname
+    tenants = get_json(rest, '/api/class/fvTenant.json')['imdata']
+    data = ''
+    names = []
+    for tenant in tenants:
+        tenant_name = str(tenant['fvTenant']['attributes']['name'])
+        names.append(tenant_name)
+        tenant_url = 'http://' + re.sub(r'&nid.*$', "", URL) + '&tname=' + tenant_name
+        data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"tname_' + tenant_name + '\" onclick=\"location.href=\'' + tenant_url + '\'\">' + tenant_name + '</button>'
+    print '<h2>Please select a tenant:</h2>'
+    spinner(names, 'show')
+    print '''<div class="btn-group" role="group" aria-label="...">'''
+    print data
+    print '''</div>'''
+    
+    if tname != None:
         print '''
-        <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>App Name</th>
-                    <th>EPG Name</th>
-                    <th>Status</th>
-                    <th>Bytes Rate(Bytes/sec)<th>
-                </tr>
-            </thead>
-        </table>
+        <div>
+            <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>App Name</th>
+                        <th>EPG Name</th>
+                        <th>Status</th>
+                        <th>Bytes Rate(Bytes/sec)<th>
+                    </tr>
+                </thead>
+            </table>
         '''
         
         epg_stats = get_json(rest, '/api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
@@ -2137,6 +2138,7 @@ def stat_epg(rest, tname):
             entry.append(bytes_rate)
             data['data'].append(entry)
         print_data_table(save_table_data(data))
+        print '</div>'
 
 def stat_intf(session, nid, md):
     if nid is None:
