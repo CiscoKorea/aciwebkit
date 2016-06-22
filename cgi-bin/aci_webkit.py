@@ -2851,7 +2851,7 @@ def main():
         md = cobra_login(apic_url, USER, PASS)
         stat_intf(session, nid, md)
     elif pname == 'stat_epg':
-        tname = form.getFirst("tname")
+        tname = form.getfirst("tname")
         rest = rest_login(APIC, USER, PASS)
         stat_epg(rest, tname)
     elif pname == 'find_dup_ip':
