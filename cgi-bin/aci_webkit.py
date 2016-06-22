@@ -2110,7 +2110,7 @@ def stat_epg(rest, tname):
     else:
         byte_stats = get_json(rest, '/api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
         pkt_stats = get_json(rest, '/api/node/class/l2IngrPktsAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
-        print '<h2>EPG %s Utilization</h2>' % tname
+        print '<h2>Tenant %s Utilization</h2>' % tname
         print '''
         <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
