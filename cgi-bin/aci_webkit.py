@@ -2129,8 +2129,10 @@ def stat_epg(rest, tname):
         
         data = {}
         data['data'] = []
-        for i, byte_stat in byte_stats.itervalue():
+        i = 0
+        for byte_stat in byte_stats:
             pkt_stat = pkt_stats[i]
+            i = i + 1
             
             entry = []
             dn = str(epg_stat['l2IngrBytesAg15min']['attributes']['dn'])
