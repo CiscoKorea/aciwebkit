@@ -2144,7 +2144,7 @@ def stat_epg(rest, tname):
             entry.append(app)
             entry.append(epg)
             entry.append(pkt_stat['l2IngrPktsAg15min']['attributes']['dn'])
-            entry.append(bytes_rate)
+            entry.append(byte_rate)
             entry.append(pkt_rate)
             
             data['data'].append(entry)
