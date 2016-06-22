@@ -2108,9 +2108,11 @@ def stat_epg(rest, tname):
     print '''</div>'''
     
     if tname != None:
+        
+        epg_stats = get_json(rest, '/api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
         print '<h2>EPG %s Utilization</h2>' % tname
         print '''
-        <table id="epg_stats_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>App Name</th>
@@ -2122,8 +2124,6 @@ def stat_epg(rest, tname):
         </table>
         '''
         
-        epg_stats = get_json(rest, '/api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
-         
         data = {}
         data['data'] = []
         for epg_stat in epg_stats:
