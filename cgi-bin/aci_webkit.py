@@ -2135,7 +2135,7 @@ def stat_epg(rest, tname):
             i = i + 1
             
             entry = []
-            dn = str(epg_stat['l2IngrBytesAg15min']['attributes']['dn'])
+            dn = str(byte_stat['l2IngrBytesAg15min']['attributes']['dn'])
             rns = dn.split('/')
             app = rns[2].split('-')[1]
             epg = rns[3].split('-')[1]
