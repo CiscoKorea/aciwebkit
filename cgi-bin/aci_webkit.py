@@ -2093,7 +2093,6 @@ def show_tenant(rest):
     '''
 
 def stat_epg(rest, tname):
-    print '<h2>EPG %s Utilization</h2>' % tname
     tenants = get_json(rest, '/api/class/fvTenant.json')['imdata']
     data = ''
     names = []
@@ -2109,18 +2108,18 @@ def stat_epg(rest, tname):
     print '''</div>'''
     
     if tname != None:
+        print '<h2>EPG %s Utilization</h2>' % tname
         print '''
-        <div>
-            <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th>App Name</th>
-                        <th>EPG Name</th>
-                        <th>Status</th>
-                        <th>Bytes Rate(Bytes/sec)<th>
-                    </tr>
-                </thead>
-            </table>
+        <table id="epg_stats_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>App Name</th>
+                    <th>EPG Name</th>
+                    <th>Status</th>
+                    <th>Bytes Rate(Bytes/sec)<th>
+                </tr>
+            </thead>
+        </table>
         '''
         
         epg_stats = get_json(rest, '/api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
@@ -2138,7 +2137,6 @@ def stat_epg(rest, tname):
             entry.append(bytes_rate)
             data['data'].append(entry)
         print_data_table(save_table_data(data))
-        print '</div>'
 
 def stat_intf(session, nid, md):
     if nid is None:
