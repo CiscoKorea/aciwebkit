@@ -1422,7 +1422,6 @@ def show_ep_tracker(rest):
     
     data = {}
     data['data'] = []
-    entry = []
     for row in cur:
         entry = []
         entry.append(row[0])
@@ -1436,6 +1435,8 @@ def show_ep_tracker(rest):
         data['data'].append(entry)
     
     print_data_table(save_table_data(data))
+    cur.close()
+    conn.close()
     
 #     for row in cur:
         
