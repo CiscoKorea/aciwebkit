@@ -2101,7 +2101,7 @@ def stat_epg(rest, tname):
         for tenant in tenants:
             tenant_name = str(tenant['fvTenant']['attributes']['name'])
             names.append(tenant_name)
-            tenant_url = 'http://' + base_url + '&tname=' + tenant_name
+            tenant_url = base_url + '&tname=' + tenant_name
             data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"tname_' + tenant_name + '\" onclick=\"location.href=\'' + tenant_url + '\'\">' + tenant_name + '</button>'
         print '<h2>Please select a tenant:</h2>'
         spinner(names, 'show')
@@ -2123,21 +2123,21 @@ def stat_epg(rest, tname):
         </table>
         '''
         
-#         epg_stats = get_json(rest, 'api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
-#         
-#         data = {}
-#         data['data'] = []
-#         for epg_stat in epg_stats:
-#             entry = []
-#             dn_split = str(epg_stat['l2IngrBytesAg15min']['attributes']['dn']).split('/')
-#             status = str(epg_stat['l2IngrBytesAg15min']['attributes']['status'])
-#             bytes_rate = str(epg_stat['l2IngrBytesAg15min']['attributes']['unicastRate'])
-#             entry.append(dn_split[2].split('-')[1])
-#             entry.append(dn_split[3].split('-')[1])
-#             entry.append(status)
-#             entry.append(bytes_rate)
-#             data['data'].append(entry)
-#         print_data_table(save_table_data(data))
+        epg_stats = get_json(rest, 'api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
+         
+        data = {}
+        data['data'] = []
+        for epg_stat in epg_stats:
+            entry = []
+            dn_split = str(epg_stat['l2IngrBytesAg15min']['attributes']['dn']).split('/')
+            status = str(epg_stat['l2IngrBytesAg15min']['attributes']['status'])
+            bytes_rate = str(epg_stat['l2IngrBytesAg15min']['attributes']['unicastRate'])
+            entry.append(dn_split[2].split('-')[1])
+            entry.append(dn_split[3].split('-')[1])
+            entry.append(status)
+            entry.append(bytes_rate)
+            data['data'].append(entry)
+        print_data_table(save_table_data(data))
 
 def stat_intf(session, nid, md):
     if nid is None:
