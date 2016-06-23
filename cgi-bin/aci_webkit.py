@@ -2097,13 +2097,13 @@ def stat_epg(rest, tname):
         tenants = get_json(rest, '/api/class/fvTenant.json')['imdata']
         data = ''
         names = []
+        
         for tenant in tenants:
             tenant_name = str(tenant['fvTenant']['attributes']['name'])
             names.append(tenant_name)
             tenant_url = 'http://' + re.sub(r'&nid.*$', "", URL) + '&tname=' + tenant_name
             data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"tname_' + tenant_name + '\" onclick=\"location.href=\'' + tenant_url + '\'\">' + tenant_name + '</button>'
         print '<h2>Please select a tenant:</h2>'
-        spinner(names, 'show')
         print '''<div class="btn-group" role="group" aria-label="...">'''
         print data
         print '''</div>'''
