@@ -295,7 +295,7 @@ def print_navbar(aip, usr, pwd):
             <li>Port flipper to flip bulk number of ports at random intervals</li>
             <li>XML diff tool to compare ACI configs, and more...</li>
             <h4><b>Support</b></h4>
-            <p>Best effort. If you run into any issues, or have any comments, please feel free to drop me a <a href="mailto:xiangrow@cisco.com" target="_top">line</a>.</p>
+            <p>Best effort. If you run into any issues, or have any comments, please feel free to drop us - <a href="mailto:hyungsok@cisco.com" target="_top">Hyungsoo Kim</a> and <a href="mailto:hyjang@cisco.com" target="_top">HyeChurn Jang</a>.</p>
             <p>Thanks/Jacky</p>
           </div>
           <div class="modal-footer">
