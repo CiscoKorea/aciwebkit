@@ -215,7 +215,7 @@ def print_navbar(aip, usr, pwd):
             <span class="icon-bar"></span>                        
           </button>
           <a id="logo_show_dashboard" class="navbar-brand" href="@home_url">
-          <img src="/src/cisco-logo.png" width="50px" heigth="50px"/>
+          <img src="/src/tmon.png" width="50px" heigth="50px"/>
           </a>
           <a id="nid_show_dashboard" class="navbar-brand" href="@base_url">ACI Dashboard</a>
         </div>
