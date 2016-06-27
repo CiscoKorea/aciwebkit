@@ -7,7 +7,7 @@
 # Cobra and REST were used later to replace most ACI Toolkit
 # code for better performance to handle large fabric with 20k+
 # EPG and 100k+ EPs.
-# DataTables with Bootstrap extension is used to present data.
+# DataTables with Bootstrap extension is used to present data. 
 
 
 # list of packages that should be imported for this code to work
@@ -25,6 +25,9 @@ import requests
 from quik import Template   # A fast and lightweight Python template engine
 import subprocess, glob, shutil, tempfile
 from natsort import natsorted   # sort based on natural language
+
+import pymysql
+# from pymysql import connect
 
 try:
     import requests.packages.urllib3
@@ -56,15 +59,15 @@ def print_html_header():
         DualListbox_script = ''
     # source css/javascript for jasny file input and mergely diff
     if 'xml_diff' in URL:
-        jasny_script = '<script src="http://www.jasny.net/bootstrap/dist/js/jasny-bootstrap.min.js"></script>\
-                        <link href="http://www.jasny.net/bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet">'
+        jasny_script = '<script src="/src/jasny-bootstrap.min.js"></script>\
+                        <link href="/src/jasny-bootstrap.min.css" rel="stylesheet">'
         mergely_script = '<!-- Requires CodeMirror 2.16 -->\
-                        <script type="text/javascript" src="http://www.mergely.com/Mergely/lib/codemirror.js"></script>\
-                        <script type="text/javascript" src="http://codemirror.net/mode/xml/xml.js"></script>\
-                        <link type="text/css" rel="stylesheet" href="http://www.mergely.com/Mergely/lib/codemirror.css" />\
+                        <script type="text/javascript" src="/src/codemirror.js"></script>\
+                        <script type="text/javascript" src="/src/xml.js"></script>\
+                        <link type="text/css" rel="stylesheet" href="/src/codemirror.css" />\
                         <!-- Requires Mergely -->\
-                        <script type="text/javascript" src="http://www.mergely.com/Mergely/lib/mergely.js"></script>\
-                        <link type="text/css" rel="stylesheet" href="http://www.mergely.com/Mergely/lib/mergely.css" />'
+                        <script type="text/javascript" src="/src/mergely.js"></script>\
+                        <link type="text/css" rel="stylesheet" href="/src/mergely.css" />'
     else:
         jasny_script = ''
         mergely_script = ''
@@ -75,16 +78,19 @@ def print_html_header():
            'show_switch', 
            'show_ctrct', 
            'show_ctrct_detail', 
-           'show_ep', 
+           'show_ep',
+           'show_ep_tracker', 
            'show_epg', 
            'show_instP', 
            'show_rule', 
            'show_subnet', 
            'show_tenant',
            'stat_intf',
+           'stat_epg',
            'find_dup_ip',
            'flip_port',
-           'xml_diff']
+           'xml_diff',
+           'snap_back']
     temp = Template("""
     <!DOCTYPE html>
     <html>
@@ -95,19 +101,19 @@ def print_html_header():
         <!-- start: customized stylesheet with navbar-brand -->
         @dashboard_css
         <!-- end: customized stylesheet -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <!-- <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css"> -->
+        <link rel="stylesheet" href="/src/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="/src/dataTables.bootstrap.css"> -->
         <link rel="stylesheet" href="/src/dataTables.bootstrap.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css">
-        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-        <script src="//cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/1.10.10/sorting/natural.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+        <link rel="stylesheet" href="/src/buttons.dataTables.min.css">
+        <script src="/src/jquery-1.12.0.min.js"></script>
+        <script src="/src/jquery.dataTables.min.js"></script>
+        <script src="/src/dataTables.buttons.min.js"></script>
+        <script src="/src/dataTables.bootstrap.js"></script>
+        <script src="/src/jszip.min.js"></script>
+        <script src="/src/buttons.html5.min.js"></script>
+        <script src="/src/natural.js"></script>
+        <script src="/src/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/src/spin.min.js"></script>
         <!-- start: stylesheet/javascript for DualListbox -->
         @DualListbox_script
         <!-- end: stylesheet/javascript for DualListbox -->
@@ -170,10 +176,11 @@ def print_html_header():
         </script>
         <!-- end: spinner -->
         <!-- start: Dashboard theme - http://bootstrapmaster.com/demo/simpliq/ -->
-        <script src="//bootstrapmaster.com/live/simpliq/assets/js/jquery.knob.modified.min.js"></script>
-        <script src="//bootstrapmaster.com/live/simpliq/assets/js/core.min.js"></script>
-        <script src="//bootstrapmaster.com/live/simpliq/assets/js/pages/page-infrastructure.js"></script>
-        <script src="//bootstrapmaster.com/live/simpliq/assets/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/src/jquery.knob.modified.min.js"></script>
+        <script src="/src/core.min.js"></script>
+        <script src="/src/page-infrastructure.js"></script>
+        <!-- <script src="/src/page-infrastructure.js"></script> -->
+        <script src="/src/jquery-migrate-1.2.1.min.js"></script>
         <!-- end: Dashboard theme -->
         <!-- script for bs3 submenu -->
         <script>
@@ -207,39 +214,13 @@ def print_navbar(aip, usr, pwd):
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <a id="nid_show_dashboard" class="navbar-brand" href="@base_url">ACI Webkit</a>
+          <a id="logo_show_dashboard" class="navbar-brand" href="@home_url">
+          <img src="/src/sk-hynix-logo.png" width="50px" heigth="50px"/>
+          </a>
+          <a id="nid_show_dashboard" class="navbar-brand" href="@base_url">ACI Dashboard</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-cog"></span> Create <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li class="disabled"><a href=" ">App Profile</a></li>
-                <li class="disabled"><a href=" ">Bridge Domain</a></li>
-                <li class="disabled"><a href=" ">Context</a></li>
-                <li class="disabled"><a href=" ">Endpoing Group</a></li>
-                <li><a href="@base_url&pname=create_tn">Tenant</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-trash"></span> Delete <span class="caret"></span></a>
-               <ul class="dropdown-menu">
-                <li class="disabled"><a href=" ">App Profile</a></li>
-                <li class="disabled"><a href=" ">Bridge Domain</a></li>
-                <li class="disabled"><a href=" ">Context</a></li>
-                <li class="disabled"><a href=" ">Endpoing Group</a></li>
-                <li><a id="nid_delete_tn" href="@base_url&pname=delete_tn">Tenant</a></li>
-               </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-leaf"></span> DevOps <span class="caret"></span></a>
-               <ul class="dropdown-menu">
-                <li><a href="https://github.com/datacenter/acitoolkit" target="_blank">acitoolkit</a></li>
-                <li><a href="https://github.com/datacenter/arya" target="_blank">arya</a></li>
-                <li><a href="https://@aip/cobra" target="_blank">Cobra SDK</a></li>
-                <li><a href="https://@aip/visore.html" target="_blank">Object Store Browser</a></li>
-               </ul>
-            </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-sunglasses"></span> Show <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -254,6 +235,7 @@ def print_navbar(aip, usr, pwd):
                     </ul>
                 </li>
                 <li><a id="nid_show_ep" href="@base_url&pname=show_ep">End Point</a></li>
+                <li><a id="nid_show_ep_tracker" href="@base_url&pname=show_ep_tracker">End Point Tracker</a></li>
                 <li><a id="nid_show_epg" href="@base_url&pname=show_epg">End Point Group</a></li>
                 <li><a id="nid_show_instP" href="@base_url&pname=show_instP">L3 External Network</a></li>
                 <li><a id="nid_show_rule" href="@base_url&pname=show_rule">Rule</a></li>
@@ -265,13 +247,14 @@ def print_navbar(aip, usr, pwd):
               <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-signal"></span> Stats <span class="caret"></span></a>
                <ul class="dropdown-menu">
                 <li><a id="nid_stat_intf" href="@base_url&pname=stat_intf">Interface Utilization</a></li>
+                <li><a id="nid_stat_epg" href="@base_url&pname=stat_epg">EPG Utilization</a></li>
                </ul>
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href=" "><span class="glyphicon glyphicon-wrench"></span> Tools <span class="caret"></span></a>
                <ul class="dropdown-menu">
                 <li><a id="nid_find_dup_ip" href="@base_url&pname=find_dup_ip">Find EP with Dup IP</a></li>
-                <li><a id="nid_flip_port" href="@base_url&pname=flip_port">Port Flipper</a></li>
+                <li><a id="nid_snap_back" href="@base_url&pname=snap_back">Snap Back</a></li>
                 <li><a href="http://ecats-wiki/Templatized_APIC_Configurator" target="_blank">Template Configurator</a></li>
                 <li><a id="nid_xml_diff" href="@base_url&pname=xml_diff">XML diff</a></li>
                </ul>
@@ -312,7 +295,7 @@ def print_navbar(aip, usr, pwd):
             <li>Port flipper to flip bulk number of ports at random intervals</li>
             <li>XML diff tool to compare ACI configs, and more...</li>
             <h4><b>Support</b></h4>
-            <p>Best effort. If you run into any issues, or have any comments, please feel free to drop me a <a href="mailto:xiangrow@cisco.com" target="_top">line</a>.</p>
+            <p>Best effort. If you run into any issues, or have any comments, please feel free to drop us - <a href="mailto:hyungsok@cisco.com" target="_top">Hyungsoo Kim</a> and <a href="mailto:hyjang@cisco.com" target="_top">HyeChurn Jang</a>.</p>
             <p>Thanks/Jacky</p>
           </div>
           <div class="modal-footer">
@@ -510,6 +493,7 @@ def interface_enable(session, interface, tDn):
 
 
 def show_dashboard(rest):
+    base_url = 'http://' + re.sub(r'&pname.*$', "", URL)
     fvTenant_max = 64000
     fvBD_max = 15000
     fvAEPg_max = 15000
@@ -538,12 +522,13 @@ def show_dashboard(rest):
     <h2>Dashboard</h2>
     <div class="circleStats row hideInIE8">
         <div class="col-md-3 col-sm-4 col-xs-6">
+            <a href="@base_url&pname=show_tenant">
             <div class="circleStatsItemBox">
                 <div class="header">Tenants</div>
-                <span class="percent">percent</span>
                 <div class="circleStat">
-                    <input type="text" value="@fvTenant_pct" class="whiteCircle" />
-                </div>      
+                    <input type="text" value="@fvTenant_pct" class="orangeCircle" />
+                </div>
+                <span class="countpanel">@fvTenant_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@fvTenant_cnt</span>
@@ -556,14 +541,15 @@ def show_dashboard(rest):
                     </span> 
                 </div>
             </div>
+            </a>
         </div><!--/col-->
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Bridge Domains</div>
-                <span class="percent">percent</span>
                 <div class="circleStat">
-                    <input type="text" value="@fvBD_pct" class="whiteCircle" />
+                    <input type="text" value="@fvBD_pct" class="orangeCircle" />
                 </div>
+                <span class="countpanel">@fvBD_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@fvBD_cnt</span>
@@ -578,12 +564,13 @@ def show_dashboard(rest):
             </div>
         </div><!--/col-->
         <div class="col-md-3 col-sm-4 col-xs-6">
+            <a href="@base_url&pname=show_epg">
             <div class="circleStatsItemBox">
                 <div class="header">Endpoint Groups</div>
-                <span class="percent">percent</span>
                 <div class="circleStat">
-                    <input type="text" value="@fvAEPg_pct" class="whiteCircle" />
+                    <input type="text" value="@fvAEPg_pct" class="orangeCircle" />
                 </div>
+                <span class="countpanel">@fvAEPg_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@fvAEPg_cnt</span>
@@ -596,14 +583,16 @@ def show_dashboard(rest):
                     </span> 
                 </div>
             </div>
+            </a>
         </div><!--/col-->
         <div class="col-md-3 col-sm-4 col-xs-6 noMargin">
+            <a href="@base_url&pname=show_ep">
             <div class="circleStatsItemBox">
                 <div class="header">Endpoints</div>
-                <span class="percent">percent</span>
                 <div class="circleStat">
-                    <input type="text" value="@fvCEp_pct" class="whiteCircle" />
+                    <input type="text" value="@fvCEp_pct" class="orangeCircle" />
                 </div>
+                <span class="countpanel">@fvCEp_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@fvCEp_cnt</span>
@@ -616,14 +605,15 @@ def show_dashboard(rest):
                     </span> 
                 </div>
             </div>
+            </a>
         </div><!--/col-->
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Filters</div>
-                <span class="percent">percent</span>
                 <div class="circleStat">
-                    <input type="text" value="@vzFilter_pct" class="whiteCircle" />
-                </div>      
+                    <input type="text" value="@vzFilter_pct" class="orangeCircle" />
+                </div>
+                <span class="countpanel">@vzFilter_cnt</span>      
                 <div class="footer">
                     <span class="count">
                         <span class="number">@vzFilter_cnt</span>
@@ -640,10 +630,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">Contracts</div>
-                <span class="percent">percent</span>
                 <div class="circleStat">
-                    <input type="text" value="@vzBrCP_pct" class="whiteCircle" />
+                    <input type="text" value="@vzBrCP_pct" class="orangeCircle" />
                 </div>
+                <span class="countpanel">@vzBrCP_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@vzBrCP_cnt</span>
@@ -660,10 +650,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6">
             <div class="circleStatsItemBox">
                 <div class="header">L4/L7 Devices</div>
-                <span class="percent">percent</span>
                 <div class="circleStat">
-                    <input type="text" value="@vnsCDev_pct" class="whiteCircle" />
+                    <input type="text" value="@vnsCDev_pct" class="orangeCircle" />
                 </div>
+                <span class="countpanel">@vnsCDev_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@vnsCDev_cnt</span>
@@ -680,10 +670,10 @@ def show_dashboard(rest):
         <div class="col-md-3 col-sm-4 col-xs-6 noMargin">
             <div class="circleStatsItemBox">
                 <div class="header">L4/L7 Graphs</div>
-                <span class="percent">percent</span>
                 <div class="circleStat">
-                    <input type="text" value="@vnsGraphInst_pct" class="whiteCircle" />
+                    <input type="text" value="@vnsGraphInst_pct" class="orangeCircle" />
                 </div>
+                <span class="countpanel">@vnsGraphInst_cnt</span>
                 <div class="footer">
                     <span class="count">
                         <span class="number">@vnsGraphInst_cnt</span>
@@ -697,6 +687,7 @@ def show_dashboard(rest):
                 </div>
             </div>
         </div><!--/col-->
+        <!-- <div><iframe src="http://10.72.86.107:5601/app/kibana#/visualize/edit/Current-Health-History-of-Tenants-with-AEPg?embed=true&_g=(refreshInterval:(display:'5%20seconds',pause:!f,section:1,value:5000),time:(from:now-6h,mode:relative,to:now))&_a=(filters:!(),linked:!f,query:(query_string:(analyze_wildcard:!t,query:'*')),uiState:(),vis:(aggs:!((id:'1',params:(customLabel:Health,field:tenant_health_cur),schema:metric,type:avg),(id:'2',params:(customInterval:'2h',customLabel:Tenants,extended_bounds:(),field:'@timestamp',interval:auto,min_doc_count:1),schema:segment,type:date_histogram),(id:'3',params:(customLabel:Tenant,field:desc.tenant,include:(pattern:''),order:desc,orderBy:'1',size:20),schema:group,type:terms)),listeners:(),params:(addLegend:!t,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,drawLinesBetweenPoints:!t,interpolate:linear,radiusRatio:9,scale:linear,setYExtents:!t,shareYAxis:!t,showCircles:!t,smoothLines:!f,times:!(),yAxis:(max:100,min:0)),title:'Current%20Health%20History%20of%20Tenants%20with%20AEPg',type:line))" height="300" width="100%" frameborder="0"></iframe></div> -->
     </div><!--/row-->   
     """)
     print temp.render(locals())
@@ -1403,6 +1394,60 @@ def show_ctrct_detail(apic_url, md, rest):
         data['data'].append(entry)
     print_data_table(save_table_data(data), 'hide_first_col')
 
+def show_ep_tracker(rest):
+    # Print Endpoint Tracker
+    print '<h2>Endpoint Tracker</h2>'
+    print '''
+    <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>MAC</th>
+                <th>IP</th>
+                <th>Tenant</th>
+                <th>App</th>
+                <th>Endpoint Group</th>
+                <th>Interface</th>
+                <th>Time Start</th>
+                <th>Time stop</th>
+            </tr>
+        </thead>
+    </table>
+    '''
+    
+    conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='1234Qwer', db='endpointtracker')
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM endpoints")
+    
+    data = {}
+    data['data'] = []
+    for row in cur:
+        entry = []
+        entry.append(row[0])
+        entry.append(row[1])
+        entry.append(row[2])
+        entry.append(row[3])
+        entry.append(row[4])
+        entry.append(row[5])
+        entry.append(str(row[6]))
+        entry.append(str(row[7]))
+        data['data'].append(entry)
+    
+    print_data_table(save_table_data(data))
+    cur.close()
+    conn.close()
+    
+#     for row in cur:
+        
+# | mac       | char(18)  | NO   |     | NULL                |                             |
+# | ip        | char(16)  | YES  |     | NULL                |                             |
+# | tenant    | char(100) | NO   |     | NULL                |                             |
+# | app       | char(100) | NO   |     | NULL                |                             |
+# | epg       | char(100) | NO   |     | NULL                |                             |
+# | interface | char(100) | NO   |     | NULL                |                             |
+# | timestart | timestamp | NO   |     | CURRENT_TIMESTAMP   | on update CURRENT_TIMESTAMP |
+# | timestop  | timestamp | NO   |     | 0000-00-00 00:00:00 |                             |
+    
+#     print '<iframe src=\"http://' + os.environ['HTTP_HOST'] + ':8808\" height=\"900px\" width=\"100%\" frameborder=\"0\"></iframe>'
 
 def show_ep(rest):
     # Print the endpoint list
@@ -1781,7 +1826,8 @@ def show_instP(apic_url, md, rest):
         entry.append(l3extInstP.name)
         entry.append('<a href="{}" target="_blank">{}</a>'.format(instP_url, l3extInstP.name))
         entry.append(instP_list[instP_dn, 'tn'])
-        entry.append(ctx_list[l3extInstP.scope])
+        if l3extInstP.scope in ctx_list: entry.append(ctx_list[l3extInstP.scope])
+        else: entry.append('Non-Context')
         entry.append(instP_list[instP_dn, 'l3out'])
         entry.append('<br>'.join(natsorted(instP_list[instP_dn, 'subnet'].split('<br>'))))
         entry.append('<br>'.join(natsorted(instP_list[instP_dn, 'cons_ctrct'].split('<br>'))))
@@ -2046,6 +2092,61 @@ def show_tenant(rest):
     </table>
     '''
 
+def stat_epg(rest, tname):
+    if tname is None:
+        tenants = get_json(rest, '/api/class/fvTenant.json')['imdata']
+        data = ''
+        names = []
+        
+        for tenant in tenants:
+            tenant_name = str(tenant['fvTenant']['attributes']['name'])
+            names.append(tenant_name)
+            tenant_url = 'http://' + re.sub(r'&nid.*$', "", URL) + '&tname=' + tenant_name
+            data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"tname_' + tenant_name + '\" onclick=\"location.href=\'' + tenant_url + '\'\">' + tenant_name + '</button>'
+        print '<h2>Please select a tenant:</h2>'
+        print '''<div class="btn-group" role="group" aria-label="...">'''
+        print data
+        print '''</div>'''
+    else:
+        byte_stats = get_json(rest, '/api/node/class/l2IngrBytesAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
+        pkt_stats = get_json(rest, '/api/node/class/l2IngrPktsAg15min.json?query-target-filter=wcard(l2IngrBytesAg15min.dn,\"uni/tn-%s/ap-.*/epg-.*\")' % tname)['imdata']
+        print '<h2>Tenant %s Utilization</h2>' % tname
+        print '''
+        <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>App Name</th>
+                    <th>EPG Name</th>
+                    <th>Bytes Rate(Bps)</th>
+                    <th>Packets Rate(pps)</th>
+                </tr>
+            </thead>
+        </table>
+        '''
+        
+        data = {}
+        data['data'] = []
+        i = 0
+        for byte_stat in byte_stats:
+            pkt_stat = pkt_stats[i]
+            i = i + 1
+            
+            entry = []
+            dn = str(byte_stat['l2IngrBytesAg15min']['attributes']['dn'])
+            rns = dn.split('/')
+            app = rns[2].split('-')[1]
+            epg = rns[3].split('-')[1]
+            byte_rate = str(byte_stat['l2IngrBytesAg15min']['attributes']['unicastRate'])
+            pkt_rate = str(pkt_stat['l2IngrPktsAg15min']['attributes']['unicastRate'])
+            
+            entry.append(app)
+            entry.append(epg)
+            entry.append(byte_rate)
+            entry.append(pkt_rate)
+            
+            data['data'].append(entry)
+
+        print_data_table(save_table_data(data))
 
 def stat_intf(session, nid, md):
     if nid is None:
@@ -2064,7 +2165,7 @@ def stat_intf(session, nid, md):
             for id, node in sorted(nodes_new.items()):
                 ids.append(id)
                 node_url = 'http://' + re.sub(r'&nid.*$', "", URL) + '&nid=' + id
-                data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"nid_' + id + '\" onclick=\"location.href=\'' + node_url + '\' \">' + id + '</button>'
+                data = data + '<button type=\"button\" class=\"btn btn-default\" id=\"nid_' + id + '\" onclick=\"location.href=\'' + node_url + '\'\">' + id + '</button>'
             print '<h2>Please select a node:</h2>'
             spinner(ids, 'show')
             print '''<div class="btn-group" role="group" aria-label="...">'''
@@ -2669,6 +2770,12 @@ def xml_diff(form):
         """)
         print temp.render(locals())
 
+def snap_back(rest):
+    
+    print '<iframe src=\"http://' + os.environ['HTTP_HOST'] + ':8810\" height=\"900px\" width=\"100%\" frameborder=\"0\"></iframe>'
+#     print '''
+#     <iframe src="http://10.72.86.51:8810" height="900px" width="100%" frameborder="0"></iframe>
+#     '''
 
 def cobra_login(apic_url, USER, PASS):
     """login to apic with Cobra SDK.
@@ -2746,6 +2853,10 @@ def main():
         # Show the endpoint list
         rest = rest_login(APIC, USER, PASS)
         show_ep(rest)
+    elif pname == 'show_ep_tracker':
+        # Show Endpoint Tracker
+        rest = rest_login(APIC, USER, PASS)
+        show_ep_tracker(rest)
     elif pname == 'show_epg':
         # Show the EPG list
         rest = rest_login(APIC, USER, PASS)
@@ -2775,6 +2886,10 @@ def main():
         nid = form.getfirst("nid")
         md = cobra_login(apic_url, USER, PASS)
         stat_intf(session, nid, md)
+    elif pname == 'stat_epg':
+        tname = form.getfirst("tname")
+        rest = rest_login(APIC, USER, PASS)
+        stat_epg(rest, tname)
     elif pname == 'find_dup_ip':
         # Show the find ep with dup ip page
         rest = rest_login(APIC, USER, PASS)
@@ -2786,6 +2901,10 @@ def main():
     elif pname == 'xml_diff':
         # Show the xml diff page
         xml_diff(form)
+    elif pname == 'snap_back':
+        # Link Snap back
+        rest = rest_login(APIC, USER, PASS)
+        snap_back(rest)
     else:
         # Show the dashboard
         rest = rest_login(APIC, USER, PASS)
