@@ -1,0 +1,74 @@
+---
+- hosts : acitool
+  vars:
+     apic_host : 10.72.86.21
+     home_dir : /home/cisco
+     apic_user: admin
+     apic_password: '1234Qwer'
+     mysql_user: root
+     mysql_password: '1234Qwer'
+  tasks:
+    - name: install mysql 
+      become: yes
+      apt: name=mysql-server state=present 
+
+    - name: update mysql root password
+      become: no
+      shell: mysql -u root -e "set password for 'root'@'localhost' = PASSWORD('1234Qwer')"
+      ignore_errors: True
+
+    - name: install acitoolkit dependent packages 
+      become: yes
+      apt: name={{ item }} state=present
+      with_items:
+        - libxml2-dev
+        - libxslt1-dev
+        - python-dev
+        - python-lxml
+        - libmysqlclient-dev
+        - libffi-dev
+        - libssl-dev
+        - phpmyadmin
+
+    - name: install mysql-connector 
+      become: yes
+      pip: name={{item}} state=present
+      with_items:
+        - mysql-connector-python-rf
+        - paramiko
+
+
+    - name: clone acitoolkit repo
+      become: no
+      git: repo=https://github.com/datacenter/acitoolkit.git version=master dest={{home_dir}}/acitoolkit
+
+    - name: install acitoolkit via repo 
+      become: yes
+      shell : python setup.py install chdir={{home_dir}}/acitoolkit
+      ignore_errors: True
+
+    - name: remove credentials.pyc (snapback)
+      become: yes
+      shell: rm {{home_dir}}/acitoolkit/applications/snapback/credentials.pyc
+      ignore_errors: True
+
+    - name: remove credentials.pyc (endpointtracker)
+      become: yes
+      shell: rm {{home_dir}}/acitoolkit/applications/endpointtracker/credentials.pyc
+      ignore_errors: True
+
+    - name: copy credentials.py (endpointtracker)
+      become: no
+      template: src=templates/credentials.j2 dest={{home_dir}}/acitoolkit/applications/endpointtracker/credentials.py
+
+    - name: copy credentials.py (snapback)
+      become: no
+      template: src=templates/credentials.j2 dest={{home_dir}}/acitoolkit/applications/snapback/credentials.py
+
+    - name : copy rc.local 
+      become: yes
+      template: src=templates/rc_local.j2 dest=/etc/rc.local 
+
+    - name: 'start endpointtracker, snapback'
+      become: yes
+      shell: bash -c "bash /etc/rc.local"

@@ -1,0 +1,115 @@
+---
+- hosts : acitool
+  vars:
+     apic_host : 10.72.86.21
+     home_dir : /home/cisco
+     apic_version : '2.0_1m'
+  tasks:
+    - name: install apache2 
+      become : yes
+      apt : pkg=apache2 state=present update_cache=false 
+
+    - name: install git 
+      become : yes
+      apt : pkg=git state=present update_cache=false
+
+    - name: install python-pip
+      become : yes
+      apt : pkg=python-pip state=present update_cache=false
+
+    - name: download get-pip
+      become : yes
+      get_url: url=https://bootstrap.pypa.io/get-pip.py dest=/tmp/get-pip.py mode=0550
+
+    - name: execute get-pip.py
+      become : yes
+      shell: /tmp/get-pip.py
+
+    - name : clone aciwebkit
+      become: no
+      git : repo=https://github.com/CiscoKorea/aciwebkit.git dest={{ home_dir }}/aciwebkit clone=yes version=tmon
+      when: False
+
+    - name : copy tmon ci image 
+      become: no
+      copy: src=files/tmon.png dest={{home_dir}}/aciwebkit/html/src/tmon.png 
+      when: False
+
+    - name : install requirements for aciwebkit 
+      become: yes
+      pip: requirements={{ home_dir }}/aciwebkit/requirements.txt state=present
+      ignore_errors: True
+
+    - name : copy cgi file 
+      become: yes
+      shell : cp {{ home_dir }}/aciwebkit/cgi-bin/aci_webkit.py /usr/lib/cgi-bin
+
+    - name : add exec flag 
+      become: yes
+      shell : chmod +x /usr/lib/cgi-bin/aci_webkit.py
+
+    - name: copy html contents 
+      become: yes
+      shell: cp -r {{ home_dir }}/aciwebkit/html/* /var/www/html
+
+    - name: chown html folder
+      become: yes
+      shell: chown -R www-data:www-data /var/www/html 
+
+    - name : enable apache2 cgi module
+      become: yes
+      apache2_module: state=present name=cgi
+
+    - name : apache2 restart 
+      become: yes
+      service: name=apache2 state=restarted
+
+    - name: get acicobra sdk version
+      become: no
+      register: acicobra
+      shell : pip list | grep acicobra
+      ignore_errors: True
+
+    - name: downlod acicobra sdk 
+      become: no
+      shell: curl -k https://{{ apic_host }}/cobra/_downloads/acicobra-{{apic_version}}-py2.7.egg -o /tmp/acicobra-{{apic_version}}-py2.7.egg
+      when: "'{{apic_version}}' not in acicobra.stdout"
+#      get_url: url=https://{{ apic_host }}/cobra/_downloads/acicobra-{{apic_version}}-py2.7.egg dest=/tmp/acicobra-{{apic_version}}-py2.7.egg mode=0555 validate_certs=no
+
+    - name: get acimodel sdk version
+      become: no
+      register: acimodel
+      shell : pip list | grep acimodel 
+      ignore_errors: True
+
+    - name: downlod acimodel sdk 
+      become: no
+      shell: curl -k https://{{ apic_host }}/cobra/_downloads/acimodel-{{apic_version}}-py2.7.egg -o /tmp/acimodel-{{apic_version}}-py2.7.egg
+      when: "'{{apic_version}}' not in acimodel.stdout"
+#      get_url: url=https://{{ apic_host }}/cobra/_downloads/acimodel-{{apic_version}}-py2.7.egg dest=/tmp/acimodel-{{apic_version}}-py2.7.egg mode=0555 validate_certs=no
+
+    - name : check donwload file 
+      become: no
+      stat: path=/tmp/acicobra-{{apic_version}}-py2.7.egg
+      register: acicobra_file
+
+    - name : install acicobra sdk 
+      become: yes
+      shell: easy_install /tmp/acicobra-{{apic_version}}-py2.7.egg
+      when: acicobra_file.stat.exists == True
+
+    - name : check donwload file 
+      become: no
+      stat: path=/tmp/acimodel-{{apic_version}}-py2.7.egg
+      register: acimodel_file
+
+    - name : install acimodel sdk 
+      become: yes
+      shell: easy_install /tmp/acimodel-{{apic_version}}-py2.7.egg
+      when: acimodel_file.stat.exists == True
+
+    - name : clean up files 
+      become: yes
+      shell : rm /tmp/aci*.egg /tmp/get-pip.py
+
+
