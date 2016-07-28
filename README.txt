@@ -47,7 +47,7 @@ easy_install acimodel_xxx.egg
 
 New Deployment with Ansible 
 
-0. install ansible on your desktop(not target vm) with latest version from githbu.com 
+0. install ansible on your desktop(not target vm) with latest version from github.com 
   ```
   verify python 2.7.x (latest version) installed 
   git clone https://github.com/ansible/ansible --recursive 
