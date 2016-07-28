@@ -47,6 +47,13 @@ easy_install acimodel_xxx.egg
 
 New Deployment with Ansible 
 
+0. install ansible on your desktop(not target vm) with latest version from githbu.com 
+  ```
+  verify python 2.7.x (latest version) installed 
+  git clone https://github.com/ansible/ansible --recursive 
+  cd ansible 
+  python setup.py install ( you may need sudo)
+  ```
 1. update target vm(only ubuntu 14.04 support now) ip on hosts file 
 2. make account cisco with sudo previledge on target vm 
 3. configure PasswordAuthentication yes on /etc/ssh/sshd_config  & restart ssh service with 'sudo service ssh restart'
