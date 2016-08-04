@@ -1,8 +1,9 @@
 ---
 - hosts : acitool
+  gather_facts: yes
   vars:
      apic_host : 10.72.86.21
-     home_dir : /home/cisco
+     home_dir : /opt/cisco
      apic_user: admin
      apic_password: '1234Qwer'
      mysql_user: root
@@ -11,24 +12,12 @@
     - name: install mysql 
       become: yes
       apt: name=mysql-server state=present 
+      when: ansible_distribution == 'Ubuntu'
 
     - name: update mysql root password
       become: no
       shell: mysql -u root -e "set password for 'root'@'localhost' = PASSWORD('1234Qwer')"
       ignore_errors: True
-
-    - name: install acitoolkit dependent packages 
-      become: yes
-      apt: name={{ item }} state=present
-      with_items:
-        - libxml2-dev
-        - libxslt1-dev
-        - python-dev
-        - python-lxml
-        - libmysqlclient-dev
-        - libffi-dev
-        - libssl-dev
-        - phpmyadmin
 
     - name: install mysql-connector 
       become: yes
@@ -37,9 +26,8 @@
         - mysql-connector-python-rf
         - paramiko
 
-
     - name: clone acitoolkit repo
-      become: no
+      become: yes
       git: repo=https://github.com/datacenter/acitoolkit.git version=master dest={{home_dir}}/acitoolkit
 
     - name: install acitoolkit via repo 
@@ -58,11 +46,11 @@
       ignore_errors: True
 
     - name: copy credentials.py (endpointtracker)
-      become: no
+      become: yes
       template: src=templates/credentials.j2 dest={{home_dir}}/acitoolkit/applications/endpointtracker/credentials.py
 
     - name: copy credentials.py (snapback)
-      become: no
+      become: yes
       template: src=templates/credentials.j2 dest={{home_dir}}/acitoolkit/applications/snapback/credentials.py
 
     - name : copy rc.local 

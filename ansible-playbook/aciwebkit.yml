@@ -1,37 +1,59 @@
 ---
 - hosts : acitool
+  gather_facts: yes
   vars:
      apic_host : 10.72.86.21
-     home_dir : /home/cisco
-     apic_version : '2.0_1m'
+     home_dir : /opt/cisco
+     apic_version : '2.0_1o'
   tasks:
-    - name: install apache2 
-      become : yes
-      apt : pkg=apache2 state=present update_cache=false 
 
-    - name: install git 
-      become : yes
-      apt : pkg=git state=present update_cache=false
+    - name: update apt repository
+      become: yes
+      apt: update_cache=yes
+      when: ansible_distribution == 'Ubuntu'
 
-    - name: install python-pip
-      become : yes
-      apt : pkg=python-pip state=present update_cache=false
+    - name: install required OS packages 
+      become: yes
+      apt: name={{ item }} state=present
+      with_items:
+        - libxml2-dev
+        - libxslt1-dev
+        - python-dev
+        - python-lxml
+        - libmysqlclient-dev
+        - libffi-dev
+        - libssl-dev
+        - phpmyadmin
+        - git
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: check pip
+      become: false
+      shell: which pip 
+      register: pip_status
+      ignore_errors: true
 
     - name: download get-pip
-      become : yes
+      become : no
       get_url: url=https://bootstrap.pypa.io/get-pip.py dest=/tmp/get-pip.py mode=0550
+      when: pip_status.rc != 0
 
     - name: execute get-pip.py
       become : yes
       shell: /tmp/get-pip.py
+      when: pip_status.rc != 0
+
+    - name : create folder for {{home_dir}}
+      become: yes
+      file: path={{ home_dir }} state=directory 
 
     - name : clone aciwebkit
-      become: no
-      git : repo=https://github.com/CiscoKorea/aciwebkit.git dest={{ home_dir }}/aciwebkit clone=yes version=tmon
-      when: False
+      become: yes
+      git : repo=https://github.com/CiscoKorea/aciwebkit.git dest={{ home_dir }}/aciwebkit clone=yes 
+      when: true 
 
     - name : copy tmon ci image 
-      become: no
+      become: yes
       copy: src=files/tmon.png dest={{home_dir}}/aciwebkit/html/src/tmon.png 
       when: False
 
